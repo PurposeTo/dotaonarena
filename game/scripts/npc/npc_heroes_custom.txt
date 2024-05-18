@@ -1,0 +1,8 @@
+"DOTAHeroes"
+{
+
+	"npc_dota_hero_axe"
+	{
+		"VisionNighttimeRange"		"18000"										// Range of vision at night time.
+	}
+}

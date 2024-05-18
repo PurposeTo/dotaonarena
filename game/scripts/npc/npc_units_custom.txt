@@ -1,0 +1,36 @@
+"DOTAUnits"
+{
+	"Version"	"1"
+	
+	"npc_dota_neutral_kobold"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Base stats
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"				"2800"		// Range of vision during day light.
+		"VisionNighttimeRange"				"1600"		// Range of vision at night time.
+
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"50"
+			"DamageGain"				"1"
+			"ArmorGain"					"0.3"
+			"MagicResistGain"			"0.1"
+			"MoveSpeedGain"				"0.5"
+			"BountyGain"				"25"
+			"XPGain"					"25"
+		}
+
+
+	}
+}
