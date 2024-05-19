@@ -15,6 +15,7 @@ export class GameStateListener {
 
         if (state == GameState.GAME_IN_PROGRESS) {
             this.StartGame();
+            Tutorial.AddBot("npc_dota_hero_lina", "", "", true);
         }
 
     }

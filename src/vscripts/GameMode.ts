@@ -2,10 +2,8 @@ import { reloadable } from "./lib/tstl-utils";
 import { EntityKilledListener } from "./listeners/EntityKilledListener";
 import { GameStateListener } from "./listeners/GameStateListener";
 import { WaveSpawn } from "./wave/WaveSpawn";
-
-const autoLaunchDelay = 5;
-const heroSelectionTime = 20;
-const preGameDelay = 5;
+import { DefeatStrategy } from "./DefeatStrategy";
+import { GlobalConstants } from "./GlobalConstants";
 
 declare global {
     interface CDOTAGameRules {
@@ -15,9 +13,14 @@ declare global {
 
 @reloadable
 export class GameMode {
+
+    private static readonly autoLaunchDelay = 5;
+    private static readonly heroSelectionTime = 20;
+    private static readonly preGameDelay = 5;
+
     public static Precache(this: void, context: CScriptPrecacheContext) {
 
-        
+
     }
 
     public static Activate(this: void) {
@@ -31,24 +34,47 @@ export class GameMode {
         new GameStateListener();
         new EntityKilledListener();
         new WaveSpawn();
+        new DefeatStrategy();
     }
 
     private configure(): void {
-        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.GOODGUYS, 5);
-        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.BADGUYS, 0);
-
-        GameRules.LockCustomGameSetupTeamAssignment(true);
-        GameRules.SetCustomGameSetupAutoLaunchDelay(autoLaunchDelay)
-
-        GameRules.SetHeroSelectionTime(heroSelectionTime)
-	    GameRules.SetStrategyTime(0)
-	    GameRules.SetShowcaseTime(0)
-	    GameRules.SetPreGameTime(preGameDelay)
-
-        GameRules.SetUseUniversalShopMode(true)
-
         const gameModeEntity = GameRules.GetGameModeEntity();
-	    gameModeEntity.SetAnnouncerDisabled(true);
+
+        // доступные команды для игроков
+        GameRules.SetCustomGameTeamMaxPlayers(GlobalConstants.PLAYERS_TEAM, 5);
+        GameRules.SetCustomGameTeamMaxPlayers(GlobalConstants.ENEMY_TEAM, 0);
+
+        Tutorial.SelectPlayerTeam(GlobalConstants.PLAYERS_TEAM.toString());
+
+        // стадия выбора команды
+        GameRules.LockCustomGameSetupTeamAssignment(true);
+        GameRules.SetCustomGameSetupAutoLaunchDelay(GameMode.autoLaunchDelay);
+
+        // стадия выбора героя
+        GameRules.SetHeroSelectionTime(GameMode.heroSelectionTime);
+
+        // стадия стратегии и showcase
+        GameRules.SetStrategyTime(0);
+        GameRules.SetShowcaseTime(0);
+
+        // стадия "до нулевой"
+        GameRules.SetPreGameTime(GameMode.preGameDelay);
+        gameModeEntity.SetAnnouncerDisabled(true);
+
+        // общие игровые правила
+        GameRules.SetUseUniversalShopMode(true);
+        gameModeEntity.SetTowerBackdoorProtectionEnabled(false);
+
+        // настройки смерти игрока
+        gameModeEntity.SetBuybackEnabled(false);
+        gameModeEntity.SetLoseGoldOnDeath(false);
+        GameRules.SetHeroRespawnEnabled(false);
+
+        if (IsInToolsMode()) {
+            GameRules.SetCustomGameSetupAutoLaunchDelay(0);
+            gameModeEntity.SetCustomGameForceHero("npc_dota_hero_axe");
+            GameRules.SetPreGameTime(0);
+        }
     }
 
     // Called on script_reload

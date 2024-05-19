@@ -1,8 +1,8 @@
+import { GlobalConstants } from "../GlobalConstants";
 import { reloadable } from "../lib/tstl-utils";
 
 @reloadable
 export class Spawner {
-    private static readonly WAVE_TEAM: DotaTeam = DotaTeam.BADGUYS;
     private static readonly MOB_NAME: string = "npc_dota_neutral_kobold";
     private static readonly SPAWN_POINT_NAME: string = "enemy_path_point1";
     private static readonly CREATURE_LEVEL: number = 3;
@@ -55,7 +55,7 @@ export class Spawner {
     public SpawnMobs(count: number): void {
         for (let i = 0; i < count; i++) {
             const point = Entities.FindByName(undefined, Spawner.SPAWN_POINT_NAME)!;
-            const unit = this.CreateUnitByName(Spawner.MOB_NAME, point, Spawner.WAVE_TEAM);
+            const unit = this.CreateUnitByName(Spawner.MOB_NAME, point, GlobalConstants.ENEMY_TEAM);
             this.aliveMobs.push(unit);
 
             unit.CreatureLevelUp(Spawner.CREATURE_LEVEL);
