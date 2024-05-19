@@ -5,7 +5,7 @@ import { reloadable } from "../lib/tstl-utils";
 export class Spawner {
     private static readonly MOB_NAME: string = "npc_dota_neutral_kobold";
     private static readonly SPAWN_POINT_NAME: string = "enemy_path_point1";
-    private static readonly CREATURE_LEVEL: number = 3;
+    private static readonly CREATURE_LEVEL: number = 8;
 
     private aliveMobs: CDOTA_BaseNPC_Creature[] = [];
 

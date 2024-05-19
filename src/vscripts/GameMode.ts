@@ -4,6 +4,7 @@ import { GameStateListener } from "./listeners/GameStateListener";
 import { WaveSpawn } from "./wave/WaveSpawn";
 import { DefeatStrategy } from "./DefeatStrategy";
 import { GlobalConstants } from "./GlobalConstants";
+import { PlayerDeathTombstone } from "./PlayerDeathTombstone";
 
 declare global {
     interface CDOTAGameRules {
@@ -19,8 +20,7 @@ export class GameMode {
     private static readonly preGameDelay = 5;
 
     public static Precache(this: void, context: CScriptPrecacheContext) {
-
-
+        PrecacheItemByNameSync("item_tombstone", context);
     }
 
     public static Activate(this: void) {
@@ -34,6 +34,7 @@ export class GameMode {
         new GameStateListener();
         new EntityKilledListener();
         new WaveSpawn();
+        new PlayerDeathTombstone();
         new DefeatStrategy();
     }
 
@@ -61,8 +62,10 @@ export class GameMode {
         GameRules.SetPreGameTime(GameMode.preGameDelay);
         gameModeEntity.SetAnnouncerDisabled(true);
 
-        // общие игровые правила
+        // магазин предметов
         GameRules.SetUseUniversalShopMode(true);
+
+        // общие игровые правила
         gameModeEntity.SetTowerBackdoorProtectionEnabled(false);
 
         // настройки смерти игрока
