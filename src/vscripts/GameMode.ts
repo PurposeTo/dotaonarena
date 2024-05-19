@@ -1,5 +1,7 @@
 import { reloadable } from "./lib/tstl-utils";
+import { EntityKilledListener } from "./listeners/EntityKilledListener";
 import { GameStateListener } from "./listeners/GameStateListener";
+import { WaveSpawn } from "./wave/WaveSpawn";
 
 const autoLaunchDelay = 5;
 const heroSelectionTime = 20;
@@ -26,7 +28,9 @@ export class GameMode {
     constructor() {
         this.configure();
 
-        const gameState = new GameStateListener();
+        new GameStateListener();
+        new EntityKilledListener();
+        new WaveSpawn();
     }
 
     private configure(): void {

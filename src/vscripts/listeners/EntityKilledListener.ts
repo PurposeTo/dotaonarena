@@ -7,7 +7,7 @@ export class EntityKilledListener {
         ListenToGameEvent("entity_killed", (data) => this.OnEntityKilled(data), undefined);
     }
 
-    public OnEntityKilled(data: EntityKilledEvent): void {
+    private OnEntityKilled(data: EntityKilledEvent): void {
         const unit = EntIndexToHScript(data.entindex_killed)!;
         const name = unit.GetName();
         const teamNumber = unit.GetTeamNumber();
