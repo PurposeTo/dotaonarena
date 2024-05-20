@@ -23,7 +23,8 @@ export class DefeatStrategy {
         let heroes = HeroList.GetAllHeroes();
         // именно герои, не игроки! (Акс, Лина и тп)
         const aliveHeroes = heroes.filter((e) => {
-            return e.IsAlive() || e.IsReincarnating();
+            const alive = e.IsAlive() || e.IsReincarnating();
+            return !e.IsNull() && alive;
         });
 
         print("remaining alive heroes = " + aliveHeroes.length)
