@@ -8,15 +8,20 @@ export class InvadeState {
     private static readonly WAVE_MOBS_COUNT = 10;
     private static readonly INVADE_DELAY = 1;
     private static readonly CREATURE_LEVEL: number = 3;
+    private static SHOP_NAME = "global_shop";
 
     private spawner: Spawner;
 
     private onStateEnd: Runnable = () => { };
+    private shopTrigger: CBaseTrigger;
+
 
     constructor() {
         this.spawner = new Spawner();
 
         ListenToGameEvent("entity_killed", (data) => this.OnEntityKilled(data), undefined);
+
+        this.shopTrigger = Entities.FindByName(undefined, InvadeState.SHOP_NAME)! as CBaseTrigger;
     }
 
     public Listen(onStateEnd: Runnable) {
@@ -24,7 +29,7 @@ export class InvadeState {
     }
 
     public StartState() {
-        // todo: close shop
+        this.shopTrigger.Disable();
         this.SpawnWaveMobs();
     }
 
