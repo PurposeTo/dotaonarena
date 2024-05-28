@@ -1,49 +1,65 @@
-// Dota Heroes File
 "DOTAAbilities"
 {
-	"Version"		"1"
 
-	//=================================================================================================================
-	// Templar Assassin: Refraction Holdout
-	//=================================================================================================================
-	"templar_assassin_refraction_holdout"
+	"axe_counter_helix_ts"
 	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/heroes/axe/axe_counter_helix_ts"
+		"AbilityTextureName" "axe_counter_helix"
+		"AbilitySound" "Hero_Axe.CounterHelix"
+
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"17.0 17.0 17.0 17.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilitySound"					"Hero_Axe.CounterHelix"
+		"HasShardUpgrade" "1"
+			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"chance"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_absorb"				"200 300 400 500"
+				"value"		"10 20 25 30"
 			}
-			"02"
+			"damage"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"20 40 60 80"
+				"value"				"30 45 65 90"
+				"special_bonus_unique_axe_4" "+30"
 			}
-			"04"
+			"radius"					
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"17.0 17.0 17.0 17.0"
+				"value"						"300"
+				"affected_by_aoe_increase"	"1"
+			}
+			"trigger_attacks"			"7 6 5 4"
+
+			"AbilityCooldown"
+			{
+				"value"					"0.3"
+				"special_bonus_shard"	"-0.3"
+			}
+			
+			"debuff_duration"
+			{
+				"special_bonus_scepter"		"+6.0"
+			}
+			"damage_reduction"
+			{
+				"special_bonus_scepter"		"+20"
+			}
+			"max_stacks"
+			{
+				"special_bonus_scepter"		"+5"	
+			}
+			"attacks_increase_counter"
+			{
+				"special_bonus_scepter"		"1"
 			}
 		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
+
 }

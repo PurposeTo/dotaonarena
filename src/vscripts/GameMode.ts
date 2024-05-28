@@ -21,6 +21,7 @@ export class GameMode {
 
     public static Precache(this: void, context: CScriptPrecacheContext) {
         PrecacheItemByNameSync("item_tombstone", context);
+        PrecacheResource("particle", "particles/units/heroes/hero_axe/axe_counterhelix.vpcf", context);
     }
 
     public static Activate(this: void) {
