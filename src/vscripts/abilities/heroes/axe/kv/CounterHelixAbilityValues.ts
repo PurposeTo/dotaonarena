@@ -9,6 +9,7 @@ export class CounterHelixAbilityValues {
     private static readonly SHARD_DAMAGE_REDUCTION = 'shard_damage_reduction'
     private static readonly SHARD_DEBUFF_DURATION = 'shard_debuff_duration'
     private static readonly PROC_CHANCE = 'proc_chance'
+    private static readonly OUTGOING_DAMAGE = 'damage_modifier'
 
     private readonly ability
 
@@ -19,6 +20,7 @@ export class CounterHelixAbilityValues {
     private _damage: number
     private _shardDebuffDuration: number
     private _procChance: number
+    private _outgoingDamage: number
 
     constructor(ability: CDOTABaseAbility) {
         this.ability = ability
@@ -30,6 +32,7 @@ export class CounterHelixAbilityValues {
         this._damage = this.ability.GetSpecialValueFor(CounterHelixAbilityValues.DAMAGE)
         this._shardDebuffDuration = this.ability.GetSpecialValueFor(CounterHelixAbilityValues.SHARD_DEBUFF_DURATION)
         this._procChance = this.ability.GetSpecialValueFor(CounterHelixAbilityValues.PROC_CHANCE)
+        this._outgoingDamage = this.ability.GetSpecialValueFor(CounterHelixAbilityValues.OUTGOING_DAMAGE)
     }
 
     public Update() {
@@ -40,6 +43,7 @@ export class CounterHelixAbilityValues {
         this._damage = this.ability.GetSpecialValueFor(CounterHelixAbilityValues.DAMAGE)
         this._shardDebuffDuration = this.ability.GetSpecialValueFor(CounterHelixAbilityValues.SHARD_DEBUFF_DURATION)
         this._procChance = this.ability.GetSpecialValueFor(CounterHelixAbilityValues.PROC_CHANCE)
+        this._outgoingDamage = this.ability.GetSpecialValueFor(CounterHelixAbilityValues.OUTGOING_DAMAGE)
     }
 
     public radius() {
@@ -68,5 +72,9 @@ export class CounterHelixAbilityValues {
 
     public procChanse() {
         return this._procChance
+    }
+
+    public outgoingDamage() {
+        return this._outgoingDamage;
     }
 }

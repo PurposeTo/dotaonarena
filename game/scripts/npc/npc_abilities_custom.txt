@@ -14,8 +14,9 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilitySound"					"Hero_Axe.CounterHelix"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+
 		"HasShardUpgrade" "1"
-			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
@@ -24,11 +25,16 @@
 			{
 				"value"		"10 20 25 30"
 			}
-			"damage"
+			"damage_modifier"		
 			{
-				"value"				"30 45 65 90"
-				"special_bonus_unique_axe_4" "+30"
+				"value"		"-70 -55 -35 -10"
+				"special_bonus_unique_axe_4" "+15"
 			}
+			"damage_modifier_tooltip"		
+			{	
+				"value"			"30 45 65 85"
+				"special_bonus_unique_axe_4" "+15"
+			}	
 			"radius"					
 			{
 				"value"						"300"
@@ -59,7 +65,6 @@
 				"special_bonus_scepter"		"1"
 			}
 		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
 
 }
