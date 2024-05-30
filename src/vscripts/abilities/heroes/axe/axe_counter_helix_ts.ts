@@ -38,17 +38,29 @@ class axe_counter_helix_ts extends BaseAbility {
 
 @registerModifier()
 class modifier_axe_counter_helix_ts extends BaseModifier {
-    private _ability = this.GetAbility()!;
-    private _caster = this.GetCaster()!;
-    private _parent = this.GetParent()!;
-    private abilityValues: CounterHelixAbilityValues = new CounterHelixAbilityValues(this._ability)
-
     private readonly DEBUFF_NAME = 'modifier_axe_counter_helix_debuff_ts';
+    private readonly ATTACK_MODIFIER_NAME = "axe_counter_helix_outgoing_damage"
     private readonly PARTICLE_ATTACHMENT = 'attach_attack1';
     private readonly PARTICLES = 'particles/units/heroes/hero_axe/axe_counterhelix.vpcf';
     private readonly EMIT_SOUND_KEY: string = 'AbilitySound';
 
+    private _ability;
+    private _caster;
+    private _parent;
+    private _abilityValues: CounterHelixAbilityValues;
+
+    private _isAnimating: boolean = false;
+
     private suppressCleave: 0 | 1 = 0;
+
+    constructor() {
+        super();
+
+        this._ability = this.GetAbility()!;
+        this._caster = this.GetCaster()!;
+        this._parent = this.GetParent()!;
+        this._abilityValues = new CounterHelixAbilityValues(this._ability);
+    }
 
     IsHidden(): boolean {
         return false;
@@ -67,10 +79,10 @@ class modifier_axe_counter_helix_ts extends BaseModifier {
     }
 
     OnCreated(params: object): void {
-        this.abilityValues.Update();
+        this._abilityValues.Update();
 
         if (IsServer()) {
-            const triggerAttacks = this.abilityValues.triggerAttacks();
+            const triggerAttacks = this._abilityValues.triggerAttacks();
             this.SetStackCount(triggerAttacks);
         }
     }
@@ -88,7 +100,7 @@ class modifier_axe_counter_helix_ts extends BaseModifier {
     }
 
     private ResetStackCount() {
-        const triggerAttacks = this.abilityValues.triggerAttacks();
+        const triggerAttacks = this._abilityValues.triggerAttacks();
         this.SetStackCount(triggerAttacks);
     }
 
@@ -115,14 +127,13 @@ class modifier_axe_counter_helix_ts extends BaseModifier {
     }
 
     private CastAbility() {
-        this._ability.UseResources(false, false, false, true);
         this.DecreaseStackCount();
 
         if (this.GetStackCount() <= 0) {
+            this._ability.UseResources(false, false, false, true);
+            this._ability.SetFrozenCooldown(true);
             this.ResetStackCount();
-
             this.CreateVisualSoundEffect();
-
             const enemies = this.FindEnemies();
             this.HitEnemies(enemies);
         }
@@ -133,22 +144,29 @@ class modifier_axe_counter_helix_ts extends BaseModifier {
         this.SetStackCount(stackCount);
     }
 
+    // todo: можно запустить, только если прошлый поворот акса завершился
     private CanAttackFeedbackProc(event: ModifierAttackEvent) {
         return IsServer() &&
-            event.target != this._caster &&
             !this._caster.PassivesDisabled() &&
+            this._ability.IsCooldownReady() &&
+            !this._isAnimating &&
+
+            event.target != this._caster &&
             !event.target.IsBuilding() &&
-            !event.target.IsWard() &&
-            this._ability.IsCooldownReady();
+            !event.target.IsWard();
+
     }
 
+    // todo: можно запустить, только если прошлый поворот акса завершился
     private CanAttackLandedProc(event: ModifierAttackEvent) {
         return IsServer() &&
-            event.target == this._caster &&
             !this._caster.PassivesDisabled() &&
+            this._ability.IsCooldownReady() &&
+            !this._isAnimating &&
+
+            event.target == this._caster &&
             !event.attacker.IsBuilding() &&
-            !event.attacker.IsWard() &&
-            this._ability.IsCooldownReady();
+            !event.attacker.IsWard();
     }
 
     private CreateVisualSoundEffect() {
@@ -156,7 +174,18 @@ class modifier_axe_counter_helix_ts extends BaseModifier {
         const soundName = Object.entries(kv).find(([key, val]) => key == this.EMIT_SOUND_KEY)?.[1];
         this._caster.EmitSound(soundName);
         this._caster.StartGesture(GameActivity.DOTA_CAST_ABILITY_3);
+        this.startAnimationTimer();
         this.CreateParticles();
+    }
+
+    private startAnimationTimer() {
+        const animDur = this._caster.SequenceDuration("counter_helix_anim");
+
+        this._isAnimating = true;
+        Timers.CreateTimer(animDur, () => {
+            this._isAnimating = false;
+            this._ability.SetFrozenCooldown(false);
+        })
     }
 
     private CreateParticles() {
@@ -182,7 +211,7 @@ class modifier_axe_counter_helix_ts extends BaseModifier {
             this._caster.GetTeamNumber(),
             this._caster.GetAbsOrigin(),
             undefined,
-            this.abilityValues.radius(),
+            this._abilityValues.radius(),
             UnitTargetTeam.ENEMY,
             UnitTargetType.HERO + UnitTargetType.BASIC,
             UnitTargetFlags.MAGIC_IMMUNE_ENEMIES,
@@ -192,33 +221,29 @@ class modifier_axe_counter_helix_ts extends BaseModifier {
     }
 
     private HitEnemies(enemies: CDOTA_BaseNPC[]) {
-        this._caster.AddNewModifier(this._caster, this._ability, "axe_counter_helix_outgoing_damage", {})
+        this._caster.AddNewModifier(this._caster, this._ability, this.ATTACK_MODIFIER_NAME, {})
         for (const enemy of enemies) {
             this.HitEnemy(enemy);
         }
-        this._caster.RemoveModifierByNameAndCaster("axe_counter_helix_outgoing_damage", this._caster)
+        this._caster.RemoveModifierByNameAndCaster(this.ATTACK_MODIFIER_NAME, this._caster)
     }
 
     private HitEnemy(enemy: CDOTA_BaseNPC) {
-        const attackDamage = this._caster.GetAttackDamage();
-        const damagePercent = this.abilityValues.damage();
-        const damage = attackDamage * damagePercent / 100;
-
-        this.ApplyAttack(enemy, this.abilityValues.procChanse());
+        this.ApplyAttack(enemy, this._abilityValues.procChanse());
         if (this.HasShard()) {
-            this.AddCounterHelixDebugg(enemy);
+            this.AddCounterHelixDebuff(enemy);
         }
     }
 
-    private AddCounterHelixDebugg(enemy: CDOTA_BaseNPC) {
+    private AddCounterHelixDebuff(enemy: CDOTA_BaseNPC) {
         enemy.AddNewModifier(this._caster, this._ability, this.DEBUFF_NAME,
             {
-                duration: this.abilityValues.shardDebuffDuration()
+                duration: this._abilityValues.shardDebuffDuration()
             }
         );
     }
 
-    // change: from 1 to 100
+    // chance: from 1 to 100
     private ApplyAttack(enemy: CDOTA_BaseNPC, procChance: number) {
         const proc = RollPercentage(procChance)
 
