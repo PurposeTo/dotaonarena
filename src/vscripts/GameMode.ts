@@ -78,6 +78,7 @@ export class GameMode {
             GameRules.SetCustomGameSetupAutoLaunchDelay(0);
             gameModeEntity.SetCustomGameForceHero("npc_dota_hero_axe");
             GameRules.SetPreGameTime(0);
+            GameRules.SetStartingGold(50000);
         }
     }
 
