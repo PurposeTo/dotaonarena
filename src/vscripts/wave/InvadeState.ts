@@ -1,5 +1,6 @@
 import { reloadable } from "../lib/tstl-utils";
 import { Spawner } from "../utils/Spawner";
+import { WaveConfig } from "./WaveConfig";
 
 @reloadable
 export class InvadeState {
@@ -49,6 +50,8 @@ export class InvadeState {
     }
 
     private SpawnWaveMobs(): void {
+        new WaveConfig().FindWaveMobs(); //todo
+
         this.spawner.SpawnMobsWithDelayAsync(
             InvadeState.WAVE_MOBS_COUNT,
             InvadeState.INVADE_DELAY,
@@ -58,7 +61,10 @@ export class InvadeState {
     }
 
     private ConfigureMob(unit: CDOTA_BaseNPC_Creature): void {
-        const plusLevel: number = this.waveNumber * 3;
+        print("unit is null: " + unit.IsNull())
+        print("is creature: " + unit.IsCreature())
+        const plusLevel: number = math.max(this.waveNumber, 1) * 3;
+        print("unit level up: " + plusLevel)
         unit.CreatureLevelUp(plusLevel);
     }
 
@@ -74,4 +80,5 @@ export class InvadeState {
     private Clear() {
         this.spawner.Clear();
     }
+
 }

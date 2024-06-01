@@ -1,0 +1,11 @@
+"Waves"
+{
+    "wave_1"
+    {
+        "group_1"
+        {
+            "name"  "kobold_troop"
+            "count" "5"
+        }
+    }
+}

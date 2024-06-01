@@ -1,0 +1,21 @@
+"Groups" 
+{
+    "kobold_troop"
+    {
+            "units_0"
+            {
+                "name"      "npc_dota_neutral_kobold_taskmaster"
+                "count"     "1"
+            }
+            "units_1"
+            {
+                "name"      "npc_dota_neutral_kobold_tunneler"
+                "count"     "3"
+            }
+            "units_3"
+            {
+                "name"      "npc_dota_neutral_kobold"
+                "count"     "5"
+            }
+    }
+}
