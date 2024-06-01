@@ -1,17 +1,18 @@
 import { MultiRecord } from "../spawn/MultiRecord";
 
 export class WaveConfig {
+    private waves = this.LoadWaves();
+    private groups = this.LoadGroups();
 
-    public FindWaveMobs() {
-        const waves = this.LoadWaves();
-        const groups = this.LoadGroups();
-
+    public FindWaveGroups() {
         const waveIndex = 1;
         const waveName = "wave_" + waveIndex;
 
-        const waveGroups = waves.get(waveName)!;
+        return assert(this.waves.get(waveName));
+    }
 
-        DeepPrintTable(waveGroups)
+    public FindGroupUnits(group: string) {
+        return assert(this.groups.get(group));
     }
 
     private LoadWaves(): Map<string, string[]> {

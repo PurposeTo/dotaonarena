@@ -1,16 +1,18 @@
 import { reloadable } from "../lib/tstl-utils";
-import { Spawner } from "../utils/Spawner";
+import { SpawnPoint } from "../spawn/SpawnPoint";
 import { WaveConfig } from "./WaveConfig";
 
 @reloadable
 export class InvadeState {
 
     // configs
+    private static readonly SPAWN_POINT_NAME: string = "enemy_path_point1";
     private static readonly WAVE_MOBS_COUNT = 10;
-    private static readonly INVADE_DELAY = 1;
     private static SHOP_NAME = "global_shop";
 
-    private spawner: Spawner;
+    private waveConfig: WaveConfig = new WaveConfig();
+
+    private spawn: SpawnPoint;
 
     private onStateEnd: Runnable = () => { };
     private shopTrigger: CBaseTrigger;
@@ -18,9 +20,9 @@ export class InvadeState {
     private waveNumber: number = 0; // значение по умолчанию
 
     constructor() {
-        this.spawner = new Spawner();
-
-        ListenToGameEvent("entity_killed", (data) => this.OnEntityKilled(data), undefined);
+        this.spawn = new SpawnPoint(InvadeState.SPAWN_POINT_NAME);
+        this.spawn.listenOnAllMobsKilled(() => this.onStateEnd());
+        this.spawn.listenOnMobSpawned(unit => this.ConfigureMob(unit));
 
         this.shopTrigger = Entities.FindByName(undefined, InvadeState.SHOP_NAME)! as CBaseTrigger;
     }
@@ -36,49 +38,21 @@ export class InvadeState {
         this.SpawnWaveMobs();
     }
 
-    private OnEntityKilled(data: EntityKilledEvent): void {
-        const unit = EntIndexToHScript(data.entindex_killed)!;
-
-        const mobs = this.spawner.GetMobs();
-        const aliveMobs: CDOTA_BaseNPC_Creature[] = mobs.filter((e) => {
-            return !e.IsNull() && e.IsAlive();
-        });
-
-        if (aliveMobs.length == 0) {
-            this.EndState();
-        }
-    }
-
     private SpawnWaveMobs(): void {
-        new WaveConfig().FindWaveMobs(); //todo
+       const groups = this.waveConfig.FindWaveGroups();
 
-        this.spawner.SpawnMobsWithDelayAsync(
-            InvadeState.WAVE_MOBS_COUNT,
-            InvadeState.INVADE_DELAY,
-            (c) => this.ConfigureMob(c),
-            () => this.OnAllMobsInvaded()
-        )
+       groups.forEach(group => {
+        const units = this.waveConfig.FindGroupUnits(group);
+        this.spawn.SpawnAll(units);
+       });
     }
 
     private ConfigureMob(unit: CDOTA_BaseNPC_Creature): void {
-        print("unit is null: " + unit.IsNull())
-        print("is creature: " + unit.IsCreature())
         const plusLevel: number = math.max(this.waveNumber, 1) * 3;
-        print("unit level up: " + plusLevel)
         unit.CreatureLevelUp(plusLevel);
     }
 
     private OnAllMobsInvaded() {
         // пока ничего не делать
     }
-
-    private EndState() {
-        this.Clear();
-        this.onStateEnd();
-    }
-
-    private Clear() {
-        this.spawner.Clear();
-    }
-
 }
