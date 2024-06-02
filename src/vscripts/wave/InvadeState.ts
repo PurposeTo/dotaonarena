@@ -42,7 +42,10 @@ export class InvadeState {
        const groups = this.waveConfig.FindWaveGroups();
 
        groups.forEach(group => {
+        print("spawn group: " + group)
         const units = this.waveConfig.FindGroupUnits(group);
+        print("group units: ")
+        DeepPrintTable(units)
         this.spawn.SpawnAll(units);
        });
     }

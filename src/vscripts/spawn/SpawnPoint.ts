@@ -57,7 +57,10 @@ export class SpawnPoint {
         Timers.CreateTimer(() => {
             if (this.isEmptyQueue()) return;
 
-            const unitName: string = this.getUnitToSpawn();
+            print("\n\nspawn queue: ")
+            DeepPrintTable(this.unitsQueue)
+
+            const unitName: string = this.pollUnitToSpawn();
             const unit = this.spawner.CreateUnitByName(unitName, this.point, SpawnPoint.TEAM);
             this.aliveMobs.push(unit);
             this.onMobSpawned(unit);
@@ -84,8 +87,8 @@ export class SpawnPoint {
         return this.aliveMobs.length == 0;
     }
 
-    private getUnitToSpawn(): string {
-        const index = this.unitsQueue.length - 1;
-        return this.unitsQueue[index];
+    private pollUnitToSpawn(): string {
+        const unit = assert(this.unitsQueue.pop());
+        return unit;
     }
 }
