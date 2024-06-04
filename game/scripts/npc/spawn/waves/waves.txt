@@ -2,7 +2,7 @@
 {
     "wave_1"
     {
-        "group_1"
+        "e_1"
         {
             "name"  "kobold_troop"
             "count" "5"
