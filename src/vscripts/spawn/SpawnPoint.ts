@@ -57,9 +57,6 @@ export class SpawnPoint {
         Timers.CreateTimer(() => {
             if (this.isEmptyQueue()) return;
 
-            print("\n\nspawn queue: ")
-            DeepPrintTable(this.unitsQueue)
-
             const unitName: string = this.pollUnitToSpawn();
             const unit = this.spawner.CreateUnitByName(unitName, this.point, SpawnPoint.TEAM);
             this.aliveMobs.push(unit);

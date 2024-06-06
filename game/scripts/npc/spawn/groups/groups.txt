@@ -10,12 +10,12 @@
             "e_1"
             {
                 "name"      "npc_dota_neutral_kobold_tunneler"
-                "count"     "3"
+                "count"     "2"
             }
             "e_2"
             {
                 "name"      "npc_dota_neutral_kobold"
-                "count"     "5"
+                "count"     "3"
             }
     }
 }

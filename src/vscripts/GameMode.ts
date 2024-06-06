@@ -5,6 +5,7 @@ import { WaveSpawn } from "./wave/WaveSpawn";
 import { DefeatStrategy } from "./DefeatStrategy";
 import { GlobalConstants } from "./GlobalConstants";
 import { PlayerDeathTombstone } from "./PlayerDeathTombstone";
+import { EntityKilledBounty } from "./ModeRules/EntityKilledBounty";
 
 declare global {
     interface CDOTAGameRules {
@@ -37,6 +38,7 @@ export class GameMode {
         new WaveSpawn();
         new PlayerDeathTombstone();
         new DefeatStrategy();
+        new EntityKilledBounty();
     }
 
     private configure(): void {

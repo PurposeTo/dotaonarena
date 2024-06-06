@@ -11,35 +11,31 @@
 		//----------------------------------------------------------------
 		"TeamName"							"DOTA_TEAM_BADGUYS"
 
-
 		// Base stats
 		//----------------------------------------------------------------
 		"VisionDaytimeRange"				"3800"		// Range of vision during day light.
 		"VisionNighttimeRange"				"2600"		// Range of vision at night time.
-
 
 		"Creature"
 		{
 			//Level Up Parameters
 			//------------------------------------------------------------
 
-			"HPGain"					"50"
-			"DamageGain"				"1"
+			"HPGain"					"10"
+			"DamageGain"				"3"
 			"ArmorGain"					"0.3"
 			"MagicResistGain"			"0.1"
 			"MoveSpeedGain"				"0.5"
-			"BountyGain"				"25"
-			"XPGain"					"25"
+			"BountyGain"				"5"
+			"XPGain"					"5"
 		}
 	}
-
 
 	"npc_dota_neutral_kobold_tunneler"
 	{
 		"BaseClass"					  		"npc_dota_creature"
 		"UseNeutralCreepBehavior"			"0"
 
-		
 		// Team
 		//----------------------------------------------------------------
 		"TeamName"							"DOTA_TEAM_BADGUYS"
@@ -49,29 +45,26 @@
 		"VisionDaytimeRange"				"3800"		// Range of vision during day light.
 		"VisionNighttimeRange"				"2600"		// Range of vision at night time.
 
-
 		"Creature"
 		{
 			//Level Up Parameters
 			//------------------------------------------------------------
 
-			"HPGain"					"50"
-			"DamageGain"				"1"
+			"HPGain"					"10"
+			"DamageGain"				"3"
 			"ArmorGain"					"0.3"
 			"MagicResistGain"			"0.1"
 			"MoveSpeedGain"				"0.5"
-			"BountyGain"				"25"
-			"XPGain"					"25"
+			"BountyGain"				"5"
+			"XPGain"					"5"
 		}
 	}
-
 
 	"npc_dota_neutral_kobold_taskmaster"
 	{
 		"BaseClass"					  		"npc_dota_creature"
 		"UseNeutralCreepBehavior"			"0"
 
-		
 		// Team
 		//----------------------------------------------------------------
 		"TeamName"							"DOTA_TEAM_BADGUYS"
@@ -81,20 +74,18 @@
 		"VisionDaytimeRange"				"3800"		// Range of vision during day light.
 		"VisionNighttimeRange"				"2600"		// Range of vision at night time.
 
-
 		"Creature"
 		{
 			//Level Up Parameters
 			//------------------------------------------------------------
 
-			"HPGain"					"50"
-			"DamageGain"				"1"
+			"HPGain"					"10"
+			"DamageGain"				"3"
 			"ArmorGain"					"0.3"
 			"MagicResistGain"			"0.1"
 			"MoveSpeedGain"				"0.5"
-			"BountyGain"				"25"
-			"XPGain"					"25"
+			"BountyGain"				"5"
+			"XPGain"					"5"
 		}
-
 	}
 }
