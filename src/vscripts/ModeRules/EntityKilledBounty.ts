@@ -44,22 +44,18 @@ export class EntityKilledBounty {
 
     private OnMobKilledByPlayer(attacker: PlayerID, killed: CDOTA_BaseNPC) {
         const gold = killed.GetGoldBounty();
-        this.AddPlayerGold(attacker, gold);
+        const exp = killed.GetDeathXP();
+        this.AddPlayerBounty(attacker, gold, exp);
     }
 
-    private AddPlayerGold(attacker: PlayerID, gold: number) {
+    private AddPlayerBounty(attacker: PlayerID, gold: number, exp: number) {
         const playerCount = PlayerResource.GetPlayerCount();
 
-        let maxGold = gold * EntityKilledBounty.ASSIST_BOUNTY_MODIFIER;
-        maxGold = math.max(maxGold, 1);
+        let assistGold = this.CalculateBounty(gold, playerCount);
+        const assistExp = this.CalculateBounty(exp, playerCount);
 
-        let newGold = gold / playerCount;
-        newGold = math.max(newGold, 1);
-
-        newGold *= EntityKilledBounty.PLAYER_CONT_BOUNTY_MODIFIER;
-        newGold = math.min(newGold, maxGold);
-        newGold = this.Round(newGold, 0);
-        print("add " + newGold + " gold for assist to each other players")
+        print("add " + assistGold + " gold for assist to each other players")
+        print("add " + assistExp + " experience for assist to each other players")
 
         for (let i = 0; i < DOTA_MAX_TEAM_PLAYERS; i++) {
             if (!PlayerResource.IsValidPlayerID(i)) continue;
@@ -71,14 +67,28 @@ export class EntityKilledBounty {
                 return; //only for other players
 
             }
-            
+
             const hero: CDOTA_BaseNPC_Hero = assert(PlayerResource.GetSelectedHeroEntity(i));
 
-            hero.ModifyGold(newGold, true, ModifyGoldReason.SHARED_GOLD);
+            hero.ModifyGold(assistGold, true, ModifyGoldReason.SHARED_GOLD);
+            hero.AddExperience(assistExp, ModifyXpReason.CATCH_UP, false, true);
         }
     }
 
     private Round(num: number, fractionDigits: number): number {
         return Number(num.toFixed(fractionDigits));
+    }
+
+    private CalculateBounty(bounty: number, playerCount: number): number {
+        let max = bounty * EntityKilledBounty.ASSIST_BOUNTY_MODIFIER;
+        max = math.max(max, 1);
+
+        let newValue = bounty / playerCount;
+        newValue = math.max(newValue, 1);
+
+        newValue *= EntityKilledBounty.PLAYER_CONT_BOUNTY_MODIFIER;
+        newValue = math.min(newValue, max);
+        newValue = this.Round(newValue, 0);
+        return newValue;
     }
 }
