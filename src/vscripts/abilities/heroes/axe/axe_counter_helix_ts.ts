@@ -46,8 +46,6 @@ class modifier_axe_counter_helix_ts extends BaseModifier {
     private readonly PARTICLES = 'particles/units/heroes/hero_axe/axe_counterhelix.vpcf';
     private readonly EMIT_SOUND_KEY: string = 'AbilitySound';
 
-    private readonly random: DotaRandom = new DotaRandom();
-
     private _ability;
     private _caster;
     private _parent;
@@ -249,7 +247,7 @@ class modifier_axe_counter_helix_ts extends BaseModifier {
 
     // chance: from 1 to 100
     private ApplyAttack(enemy: CDOTA_BaseNPC, procChance: number) {
-        if (this.random.Proc(procChance)) {
+        if (DotaRandom.Proc(procChance)) {
             this.suppressCleave = 1;
             this._caster.PerformAttack(enemy, false, false, true, true, true, false, false);
         }
