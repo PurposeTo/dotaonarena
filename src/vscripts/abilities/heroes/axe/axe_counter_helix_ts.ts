@@ -1,5 +1,7 @@
 import { BaseAbility, BaseModifier, registerAbility, registerModifier } from '../../../lib/dota_ts_adapter';
+import { DotaRandom } from '../../../utils/DotaRandom';
 import { CounterHelixAbilityValues } from './kv/CounterHelixAbilityValues';
+
 
 @registerAbility()
 class axe_counter_helix_ts extends BaseAbility {
@@ -43,6 +45,8 @@ class modifier_axe_counter_helix_ts extends BaseModifier {
     private readonly PARTICLE_ATTACHMENT = 'attach_attack1';
     private readonly PARTICLES = 'particles/units/heroes/hero_axe/axe_counterhelix.vpcf';
     private readonly EMIT_SOUND_KEY: string = 'AbilitySound';
+
+    private readonly random: DotaRandom = new DotaRandom();
 
     private _ability;
     private _caster;
@@ -245,9 +249,7 @@ class modifier_axe_counter_helix_ts extends BaseModifier {
 
     // chance: from 1 to 100
     private ApplyAttack(enemy: CDOTA_BaseNPC, procChance: number) {
-        const proc = RollPercentage(procChance)
-
-        if (proc) {
+        if (this.random.Proc(procChance)) {
             this.suppressCleave = 1;
             this._caster.PerformAttack(enemy, false, false, true, true, true, false, false);
         }
