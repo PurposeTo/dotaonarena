@@ -55,7 +55,10 @@ export class SpawnPoint {
         this.spawning = true;
 
         Timers.CreateTimer(() => {
-            if (this.isEmptyQueue()) return;
+            if (this.isEmptyQueue()) {
+                this.spawning = false;
+                return;
+            }
 
             const unitName: string = this.pollUnitToSpawn();
             const unit = this.spawner.CreateUnitByName(unitName, this.point, SpawnPoint.TEAM);

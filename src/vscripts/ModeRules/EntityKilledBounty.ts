@@ -54,18 +54,11 @@ export class EntityKilledBounty {
         let assistGold = this.CalculateBounty(gold, playerCount);
         const assistExp = this.CalculateBounty(exp, playerCount);
 
-        print("add " + assistGold + " gold for assist to each other players")
-        print("add " + assistExp + " experience for assist to each other players")
-
         for (let i = 0; i < DOTA_MAX_TEAM_PLAYERS; i++) {
             if (!PlayerResource.IsValidPlayerID(i)) continue;
 
             if(i == attacker) {
-                const hero: CDOTA_BaseNPC_Hero = assert(PlayerResource.GetSelectedHeroEntity(i));
-                const heroName = hero.GetName();
-                print("Skip for attacker. Player hero: " + heroName);
                 return; //only for other players
-
             }
 
             const hero: CDOTA_BaseNPC_Hero = assert(PlayerResource.GetSelectedHeroEntity(i));

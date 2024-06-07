@@ -1,4 +1,5 @@
 import { MultiRecord } from "../spawn/MultiRecord";
+import { DotaRandom } from "../utils/DotaRandom";
 
 export class WaveConfig {
     private waves = this.LoadWaves();
@@ -8,7 +9,11 @@ export class WaveConfig {
         const waveIndex = 1;
         const waveName = "wave_" + waveIndex;
 
-        return assert(this.waves.get(waveName));
+        const wave = this.waves.has(waveName)
+        ? assert(this.waves.get(waveName))
+        : DotaRandom.randomMapValue(this.waves);
+
+        return wave;
     }
 
     public FindGroupUnits(group: string) {
