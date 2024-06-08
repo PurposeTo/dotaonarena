@@ -42,7 +42,7 @@ export class InvadeState {
     }
 
     private SpawnWaveMobs(): void {
-        const groups = this.waveConfig.FindWaveGroups();
+        const groups = this.waveConfig.FindWaveGroups(this.waveNumber);
 
         groups.forEach(group => {
             const units = this.waveConfig.FindGroupUnits(group);

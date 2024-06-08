@@ -1,11 +1,26 @@
 "Waves"
 {
-    "wave_1"
+    "wave_0"
     {
+        "e_0"
+        {
+            "name"      "kobold_troop"
+            "count"     "1"
+        }
+
         "e_1"
         {
-            "name"  "kobold_troop"
-            "count" "1"
+            "name"      "kobold_warriors"
+            "count"     "1"
+        }
+    }
+
+    "wave_1"
+    {
+        "e_0"
+        {
+            "name"      "ghost_troop"
+            "count"     "2"
         }
     }
 }

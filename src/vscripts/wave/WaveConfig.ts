@@ -5,13 +5,15 @@ export class WaveConfig {
     private waves = this.LoadWaves();
     private groups = this.LoadGroups();
 
-    public FindWaveGroups() {
-        const waveIndex = 1;
+    public FindWaveGroups(waveIndex: number) {
         const waveName = "wave_" + waveIndex;
 
         const wave = this.waves.has(waveName)
-        ? assert(this.waves.get(waveName))
-        : DotaRandom.randomMapValue(this.waves);
+            ? assert(this.waves.get(waveName))
+            : DotaRandom.randomMapValue(this.waves);
+
+        print("Found wave units: " + this.waves.has(waveName))
+        DeepPrintTable(wave);
 
         return wave;
     }

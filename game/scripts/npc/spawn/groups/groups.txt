@@ -2,20 +2,34 @@
 {
     "kobold_troop"
     {
-            "e_0"
-            {
-                "name"      "npc_dota_neutral_kobold_taskmaster"
-                "count"     "1"
-            }
-            "e_1"
-            {
-                "name"      "npc_dota_neutral_kobold_tunneler"
-                "count"     "2"
-            }
-            "e_2"
-            {
-                "name"      "npc_dota_neutral_kobold"
-                "count"     "3"
-            }
+        "e_0"
+        {
+            "name"      "npc_dota_neutral_kobold_taskmaster"
+            "count"     "1"
+        }
+        "e_1"
+        {
+            "name"      "npc_dota_neutral_kobold_tunneler"
+            "count"     "1"
+        }
+        "e_2"
+        {
+            "name"      "npc_dota_neutral_kobold"
+            "count"     "3"
+        }
+    }
+
+    "ghost_troop"
+    {
+        "e_0"
+        {
+            "name"      "npc_dota_neutral_fel_beast"
+            "count"     "2"
+        }
+        "e_1"
+        {
+            "name"      "npc_dota_neutral_ghost"
+            "count"     "1"
+        }
     }
 }
