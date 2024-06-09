@@ -1,6 +1,8 @@
 import { reloadable } from "../lib/tstl-utils";
 import { Shop } from "../shop/Shop";
+import { ISpawnPoint } from "../spawn/ISpawnPoint";
 import { SpawnPoint } from "../spawn/SpawnPoint";
+import { SpawnPoints } from "../spawn/SpawnPoints";
 import { WaveConfig } from "./WaveConfig";
 
 @reloadable
@@ -20,10 +22,13 @@ export class InvadeState {
     private waveNumber: number = 0; // значение по умолчанию
 
     constructor() {
-        this.spawn = new SpawnPoint(InvadeState.SPAWN_POINT_NAME);
+        //todo: use
+        const spawnPoints: ISpawnPoint = SpawnPoints.fromConfig();
+
+        const point: CBaseEntity = assert(Entities.FindByName(undefined, InvadeState.SPAWN_POINT_NAME));
+        this.spawn = new SpawnPoint(point);
         this.spawn.listenOnAllMobsKilled(() => this.onStateEnd());
         this.spawn.listenOnMobSpawned(unit => this.ConfigureMob(unit));
-
     }
 
     public Listen(onStateEnd: Runnable) {

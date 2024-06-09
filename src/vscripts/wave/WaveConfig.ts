@@ -19,6 +19,10 @@ export class WaveConfig {
     }
 
     public FindGroupUnits(group: string) {
+        if (!this.groups.has(group)) {
+            print("ERROR. Units group '" + group + "' is not presented")
+        }
+
         return assert(this.groups.get(group));
     }
 

@@ -1,15 +1,15 @@
 import { GlobalConstants } from "../GlobalConstants";
 import { reloadable } from "../lib/tstl-utils";
+import { ISpawnPoint } from "./ISpawnPoint";
 import { Spawner } from "./Spawner";
 
 
 @reloadable
-export class SpawnPoint {
+export class SpawnPoint implements ISpawnPoint {
 
     private static readonly TEAM: DotaTeam = GlobalConstants.ENEMY_TEAM;
     private static readonly SPAWN_DELAY = 1;
 
-    private readonly name: string;
     private readonly point: CBaseEntity;
     private readonly spawner: Spawner;
 
@@ -21,9 +21,8 @@ export class SpawnPoint {
     private onMobSpawned: Action<CDOTA_BaseNPC_Creature> = (unit) => { }
     private onAllMobsKilled: Runnable = () => { }
 
-    constructor(name: string) {
-        this.name = name;
-        this.point = assert(Entities.FindByName(undefined, name));
+    constructor(point: CBaseEntity) {
+        this.point = point;
         this.spawner = new Spawner();
 
         ListenToGameEvent("entity_killed", (data) => this.OnEntityKilled(data), undefined);

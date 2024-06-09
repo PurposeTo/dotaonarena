@@ -1,0 +1,7 @@
+"SpawnPoints"
+{
+    "array"
+    {
+        "0"    "enemy_path_point1"
+    }
+}
