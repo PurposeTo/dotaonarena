@@ -15,20 +15,18 @@ export class InvadeState {
 
     private waveConfig: WaveConfig = new WaveConfig();
 
-    private spawn: SpawnPoint;
+    private spawn: ISpawnPoint;
     private shop = new Shop();
 
     private onStateEnd: Runnable = () => { };
     private waveNumber: number = 0; // значение по умолчанию
 
     constructor() {
-        //todo: use
-        const spawnPoints: ISpawnPoint = SpawnPoints.fromConfig();
+        const spawnPoints: SpawnPoints = SpawnPoints.fromConfig();
+        spawnPoints.listenOnAllMobsKilled(() => this.onStateEnd());
+        spawnPoints.listenOnMobSpawned(unit => this.ConfigureMob(unit));
 
-        const point: CBaseEntity = assert(Entities.FindByName(undefined, InvadeState.SPAWN_POINT_NAME));
-        this.spawn = new SpawnPoint(point);
-        this.spawn.listenOnAllMobsKilled(() => this.onStateEnd());
-        this.spawn.listenOnMobSpawned(unit => this.ConfigureMob(unit));
+        this.spawn = spawnPoints;
     }
 
     public Listen(onStateEnd: Runnable) {

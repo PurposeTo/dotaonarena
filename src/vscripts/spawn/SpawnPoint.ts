@@ -16,24 +16,25 @@ export class SpawnPoint implements ISpawnPoint {
     private unitsQueue: string[] = [];
 
     private spawning: boolean = false;
-    private aliveMobs: CDOTA_BaseNPC_Creature[] = [];
 
     private onMobSpawned: Action<CDOTA_BaseNPC_Creature> = (unit) => { }
-    private onAllMobsKilled: Runnable = () => { }
 
     constructor(point: CBaseEntity) {
         this.point = point;
         this.spawner = new Spawner();
 
-        ListenToGameEvent("entity_killed", (data) => this.OnEntityKilled(data), undefined);
+    }
+
+    public Spawning(): boolean {
+        return this.spawning;
+    }
+
+    public IsEmptyQueue() {
+        return this.unitsQueue.length == 0;
     }
 
     public listenOnMobSpawned(action: Action<CDOTA_BaseNPC_Creature>) {
         this.onMobSpawned = action;
-    }
-
-    public listenOnAllMobsKilled(action: Runnable) {
-        this.onAllMobsKilled = action;
     }
 
     public Spawn(unit: string) {
@@ -54,36 +55,20 @@ export class SpawnPoint implements ISpawnPoint {
         this.spawning = true;
 
         Timers.CreateTimer(() => {
-            if (this.isEmptyQueue()) {
-                this.spawning = false;
+            if (this.IsEmptyQueue()) {
                 return;
             }
 
             const unitName: string = this.pollUnitToSpawn();
             const unit = this.spawner.CreateUnitByName(unitName, this.point, SpawnPoint.TEAM);
-            this.aliveMobs.push(unit);
             this.onMobSpawned(unit);
+
+            if (this.IsEmptyQueue()) {
+                this.spawning = false;
+            }
 
             return SpawnPoint.SPAWN_DELAY;
         });
-    }
-
-    private OnEntityKilled(data: EntityKilledEvent): void {
-        this.aliveMobs = this.aliveMobs.filter((e) => {
-            return !e.IsNull() && e.IsAlive();
-        });
-
-        if (this.isNoAlive() && this.isEmptyQueue()) {
-            this.onAllMobsKilled();
-        }
-    }
-
-    private isEmptyQueue() {
-        return this.unitsQueue.length == 0;
-    }
-
-    private isNoAlive() {
-        return this.aliveMobs.length == 0;
     }
 
     private pollUnitToSpawn(): string {
