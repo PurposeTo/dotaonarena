@@ -1,3 +1,4 @@
+
 "DOTAUnits"
 {
     "npc_dota_neutral_ghost"
@@ -57,5 +58,4 @@
 			"XPGain"					"4"
 		}
 	}
-
 }

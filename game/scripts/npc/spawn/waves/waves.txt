@@ -2,7 +2,7 @@
 {
     "wave_0"
     {
-        "e_0"
+        "0"
         {
             "name"      "kobold_troop"
             "count"     "1"
@@ -11,9 +11,36 @@
 
     "wave_1"
     {
-        "e_0"
+        "0"
         {
             "name"      "ghost_troop"
+            "count"     "2"
+        }
+    }
+
+    "wave_2"
+    {
+        "0"
+        {
+            "name"      "little_trolls"
+            "count"     "2"
+        }
+    }
+
+    "wave_2"
+    {
+        "0"
+        {
+            "name"      "gnoll_troop"
+            "count"     "2"
+        }
+    }
+
+    "wave_3"
+    {
+        "0"
+        {
+            "name"      "harpy_troop"
             "count"     "2"
         }
     }

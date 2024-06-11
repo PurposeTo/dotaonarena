@@ -1,5 +1,8 @@
-#base "units/npc_units_kobolds_custom.txt"
 #base "units/npc_units_ghosts_custom.txt"
+#base "units/npc_units_gnolls_custom.txt"
+#base "units/npc_units_harpies_custom.txt"
+#base "units/npc_units_kobolds_custom.txt"
+#base "units/npc_units_trolls_custom.txt"
 
 "DOTAUnits"
 {

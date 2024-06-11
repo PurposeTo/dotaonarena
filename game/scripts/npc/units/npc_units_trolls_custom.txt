@@ -2,7 +2,7 @@
 
 "DOTAUnits"
 {
-	"npc_dota_neutral_kobold"
+    "npc_dota_neutral_forest_troll_high_priest"
 	{
 		"BaseClass"					  		"npc_dota_creature"
 		"UseNeutralCreepBehavior"			"0"
@@ -31,7 +31,7 @@
 		}
 	}
 
-	"npc_dota_neutral_kobold_tunneler"
+	"npc_dota_neutral_forest_troll_berserker"
 	{
 		"BaseClass"					  		"npc_dota_creature"
 		"UseNeutralCreepBehavior"			"0"
@@ -60,7 +60,7 @@
 		}
 	}
 
-	"npc_dota_neutral_kobold_taskmaster"
+	"npc_dota_neutral_gnoll_assassin"
 	{
 		"BaseClass"					  		"npc_dota_creature"
 		"UseNeutralCreepBehavior"			"0"
