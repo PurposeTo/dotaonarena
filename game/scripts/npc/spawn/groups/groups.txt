@@ -71,4 +71,34 @@
             "count"     "2"
         }
     }
+
+    "wolf_troop"
+    {
+        "0"
+        {
+            "name"      "npc_dota_neutral_alpha_wolf"
+            "count"     "1"
+        }
+
+        "1"
+        {
+            "name"      "npc_dota_neutral_giant_wolf"
+            "count"     "2"
+        }
+    }
+
+    "ogre_troop"
+    {
+        "0"
+        {
+            "name"      "npc_dota_neutral_ogre_magi"
+            "count"     "1"
+        }
+
+        "1"
+        {
+            "name"      "npc_dota_neutral_ogre_mauler"
+            "count"     "2"
+        }
+    }
 }

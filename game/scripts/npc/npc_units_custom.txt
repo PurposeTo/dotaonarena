@@ -3,6 +3,8 @@
 #base "units/npc_units_harpies_custom.txt"
 #base "units/npc_units_kobolds_custom.txt"
 #base "units/npc_units_trolls_custom.txt"
+#base "units/npc_units_wolves_custom.txt"
+#base "units/npc_units_ogres_custom.txt"
 
 "DOTAUnits"
 {
