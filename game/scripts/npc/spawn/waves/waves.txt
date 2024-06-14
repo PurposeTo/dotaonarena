@@ -62,4 +62,49 @@
             "count"     "2"
         }
     }
+
+    "wave_5"
+    {
+        "0"
+        {
+            "name"      "centaur_troop"
+            "count"     "2"
+        }
+    }
+
+    "wave_6"
+    {
+        "0"
+        {
+            "name"      "satyr_troop"
+            "count"     "1"
+        }
+    }
+    
+    "wave_7"
+    {
+        "0"
+        {
+            "name"      "hellbear_troop"
+            "count"     "1"
+        }
+    }
+        
+    "wave_8"
+    {
+        "0"
+        {
+            "name"      "wildkin_troop"
+            "count"     "1"
+        }
+    }
+        
+    "wave_9"
+    {
+        "0"
+        {
+            "name"      "troll_troop"
+            "count"     "2"
+        }
+    }
 }
