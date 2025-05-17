@@ -4,13 +4,15 @@ import { ButtleHungerAbilityValues } from './kv/ButtleHungerAbilityValues';
 @registerAbility()
 class axe_battle_hunger_custom extends BaseAbility {
     GetIntrinsicModifierName(): string {
-        return 'modifier_axe_battle_hunger_custom';
+        return modifier_axe_battle_hunger_custom.NAME;
     }
 
 }
 
 @registerModifier()
 class modifier_axe_battle_hunger_custom extends BaseModifier {
+    public static readonly NAME = "modifier_axe_battle_hunger_custom"
+
     private _ability = this.GetAbility()!;
     private _caster = this.GetCaster()!;
     private _abilityValues: ButtleHungerAbilityValues = new ButtleHungerAbilityValues(this._ability)
@@ -48,7 +50,7 @@ class modifier_axe_battle_hunger_custom extends BaseModifier {
 
         if (canApply) {
             let enemy = event.attacker
-            enemy.AddNewModifier(this._caster, this._ability, 'modifier_axe_battle_hunger_debuff_custom', {
+            enemy.AddNewModifier(this._caster, this._ability, modifier_axe_battle_hunger_debuff_custom.NAME, {
                 duration: this._abilityValues.duration(),
             });
         }
@@ -58,9 +60,9 @@ class modifier_axe_battle_hunger_custom extends BaseModifier {
 
 @registerModifier()
 class modifier_axe_battle_hunger_debuff_custom extends BaseModifier {
+    public static readonly NAME = "modifier_axe_battle_hunger_debuff_custom"
+
     private _ability = this.GetAbility()!;
-    private _caster = this.GetCaster()!;
-    private _parent = this.GetParent()!;
     private _abilityValues: ButtleHungerAbilityValues = new ButtleHungerAbilityValues(this._ability)
 
 

@@ -1,4 +1,5 @@
 import { BaseAbility, BaseModifier, registerAbility, registerModifier } from '../../../lib/dota_ts_adapter';
+import { KvUtils } from '../../../utils/KvUtils';
 import { CounterHelixAbilityValues } from './kv/CounterHelixAbilityValues';
 
 @registerAbility()
@@ -42,7 +43,6 @@ export class modifier_axe_counter_helix_custom extends BaseModifier {
 
     private readonly PARTICLE_ATTACHMENT = "attach_attack1";
     private readonly PARTICLES = "particles/units/heroes/hero_axe/axe_counterhelix.vpcf";
-    private readonly EMIT_SOUND_KEY = "AbilitySound";
     private readonly ANIM = "counter_helix_anim"
 
     private _ability;
@@ -164,8 +164,7 @@ export class modifier_axe_counter_helix_custom extends BaseModifier {
     }
 
     private CreateVisualSoundEffect() {
-        const kv = this._ability.GetAbilityKeyValues();
-        const soundName = Object.entries(kv).find(([key, val]) => key == this.EMIT_SOUND_KEY)?.[1];
+        const soundName = KvUtils.GetEmitSoundName(this._ability);
         this._caster.EmitSound(soundName);
         this._caster.StartGesture(GameActivity.DOTA_CAST_ABILITY_3);
         this.startAnimationTimer();

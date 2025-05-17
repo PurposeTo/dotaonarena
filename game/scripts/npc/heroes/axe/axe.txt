@@ -6,5 +6,6 @@
         "BaseClass"     "npc_dota_hero_axe"
         "Ability2"		"axe_battle_hunger_custom"
         "Ability3"		"axe_counter_helix_custom"
+        "Ability6"		"axe_culling_blade_custom"
     }
 }

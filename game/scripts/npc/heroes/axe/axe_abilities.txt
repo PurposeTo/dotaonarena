@@ -33,8 +33,7 @@
         "AbilityTextureName"            "axe_battle_hunger"
         "AbilitySound"					"Hero_Axe.Battle_Hunger"
 
-
-        "FightRecapLevel"				"1" // дает обзор по противнику
+        "FightRecapLevel"				"1"
 		"HasShardUpgrade"               "1"
 
         "AbilityValues"
@@ -63,12 +62,12 @@
 		"ScriptFile"                    "abilities/heroes/axe/axe_counter_helix_custom"
 
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
         "AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
 
         "AbilityTextureName"            "axe_counter_helix"
 		"AbilitySound"                  "Hero_Axe.CounterHelix"
-		"AbilitySound"					"Hero_Axe.CounterHelix"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 
         "HasScepterUpgrade"               "1"
@@ -98,5 +97,32 @@
 		}
 	}
 
+
+    "axe_culling_blade_custom"
+	{
+        "BaseClass"                     "ability_lua"
+		"ScriptFile"                    "abilities/heroes/axe/axe_culling_blade_custom"
+        
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES" // можно развеять бафф, получаемый при убийстве
+		"FightRecapLevel"				"2"
+
+
+        "AbilityTextureName"            "axe_culling_blade"
+		"AbilitySound"					"Hero_Axe.Culling_Blade_Success"
+
+        "AbilityValues"
+		{
+            "damage_multiplier"
+            {
+                "value"			              "3 4 5"
+                "CalculateSpellDamageTooltip" "1"
+            }
+        }
+    }
 
 }
