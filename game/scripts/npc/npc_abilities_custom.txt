@@ -1,5 +1,6 @@
-#base "heroes/meepo.kv"
+#base "heroes/axe/axe_abilities.txt"
 
 "DOTAAbilities"
 {
+
 }

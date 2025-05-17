@@ -1,0 +1,39 @@
+"lang"
+{
+	"Language"		"Russian"
+	"Tokens"
+	{		
+		"addon_game_name"			"Dota на арене"
+		
+		"DOTA_Tooltip_ability_item_tombstone"							"Воскресить товарища"
+		"DOTA_Chat_Tombstone_Pinged"									"Здесь павший товарищ"
+
+
+        // Axe
+        "DOTA_Tooltip_ability_axe_battle_hunger_custom"		            "Battle Hunger"
+        "DOTA_Tooltip_ability_axe_battle_hunger_custom_Description"		"Враги, атакуя вас, приходят в бешенство и получают бонусную скорость атаки, а также наносят меньше урона."
+		"DOTA_Tooltip_ability_axe_battle_hunger_custom_Lore"			"Обычные герои не могут сопротивляться ярости Могул-хана."
+
+        "DOTA_Tooltip_ability_axe_battle_hunger_custom_bonus_attack_speed"	                "ДОП. СКОРОСТЬ АТАКИ:"
+        "DOTA_Tooltip_ability_axe_battle_hunger_custom_damage_reduction"	                "%СНИЖЕНИЕ УРОНА ОТ АТАК:"
+        "DOTA_Tooltip_ability_axe_battle_hunger_custom_duration"                            "ДЛИТЕЛЬНОСТЬ:"
+
+        "DOTA_Tooltip_modifier_axe_battle_hunger_debuff_custom"					            "Battle Hunger"
+		"DOTA_Tooltip_modifier_axe_battle_hunger_debuff_custom_Description"		            "Скорость атаки увеличена на %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%, наносит на %dMODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE%%% меньше урона с руки."
+
+
+		"DOTA_Tooltip_ability_axe_counter_helix_custom"								"Counter Helix"
+		"DOTA_Tooltip_ability_axe_counter_helix_custom_Description"					"После определённого числа полученных или нанесенных атак герой прокручивает вокруг себя топор, нанося урон всем врагам неподалёку."
+		"DOTA_Tooltip_ability_axe_counter_helix_custom_Note0"						"Срабатывает при завершении атаки по владельцу способности. \nНе действуют модификаторы атаки."
+		"DOTA_Tooltip_ability_axe_counter_helix_custom_Lore"						"Могул-хан — сам себе войско."
+
+		"DOTA_Tooltip_ability_axe_counter_helix_custom_damage_multiplier"		"МНОЖИТЕЛЬ УРОНА ОТ АТАК:"
+		"DOTA_Tooltip_ability_axe_counter_helix_custom_radius"						"РАДИУС:"
+		"DOTA_Tooltip_ability_axe_counter_helix_custom_trigger_attacks"				"АТАК ДЛЯ СРАБАТЫВАНИЯ:"
+
+		"DOTA_Tooltip_modifier_axe_counter_helix_custom"							"Counter Helix"
+		"DOTA_Tooltip_modifier_axe_counter_helix_custom_Description"				"Число атак до контратаки."
+
+
+    }
+}

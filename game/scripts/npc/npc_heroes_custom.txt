@@ -1,0 +1,6 @@
+#base "heroes/axe/axe.txt"
+
+"DOTAHeroes"
+{
+    
+}
