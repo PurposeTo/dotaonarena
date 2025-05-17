@@ -1,7 +1,9 @@
 import { reloadable } from "./lib/tstl-utils";
-import { modifier_panic } from "./modifiers/modifier_panic";
-
-const heroSelectionTime = 20;
+import { EntityKilledListener } from "./listeners/EntityKilledListener";
+import { GameStateListener } from "./listeners/GameStateListener";
+import { GlobalConstants } from "./GlobalConstants";
+import { PlayerDeathTombstone } from "./gamemechanics/PlayerDeathTombstone";
+import { SharePlayerExp } from "./gamemechanics/SharePlayerExp";
 
 declare global {
     interface CDOTAGameRules {
@@ -11,9 +13,14 @@ declare global {
 
 @reloadable
 export class GameMode {
+
+    private static readonly autoLaunchDelay = 5;
+    private static readonly heroSelectionTime = 20;
+    private static readonly preGameDelay = 5;
+
     public static Precache(this: void, context: CScriptPrecacheContext) {
-        PrecacheResource("particle", "particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf", context);
-        PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts", context);
+        PrecacheItemByNameSync("item_tombstone", context);
+        PrecacheResource("particle", "particles/units/heroes/hero_axe/axe_counterhelix.vpcf", context);
     }
 
     public static Activate(this: void) {
@@ -23,69 +30,49 @@ export class GameMode {
 
     constructor() {
         this.configure();
+        this.configureToolMode();
 
-        // Register event listeners for dota engine events
-        ListenToGameEvent("game_rules_state_change", () => this.OnStateChange(), undefined);
-        ListenToGameEvent("npc_spawned", event => this.OnNpcSpawned(event), undefined);
+        new GameStateListener();
+        new EntityKilledListener();
 
-        // Register event listeners for events from the UI
-        CustomGameEventManager.RegisterListener("ui_panel_closed", (_, data) => {
-            print(`Player ${data.PlayerID} has closed their UI panel.`);
-
-            // Respond by sending back an example event
-            const player = PlayerResource.GetPlayer(data.PlayerID)!;
-            CustomGameEventManager.Send_ServerToPlayer(player, "example_event", {
-                myNumber: 42,
-                myBoolean: true,
-                myString: "Hello!",
-                myArrayOfNumbers: [1.414, 2.718, 3.142]
-            });
-
-            // Also apply the panic modifier to the sending player's hero
-            const hero = player.GetAssignedHero();
-            if (hero != undefined) { // Hero didn't spawn yet or dead
-                hero.AddNewModifier(hero, undefined, modifier_panic.name, { duration: 5 });
-            }
-        });
+        new PlayerDeathTombstone();
+        new SharePlayerExp();
     }
 
     private configure(): void {
-        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.GOODGUYS, 3);
-        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.BADGUYS, 3);
+        const gameModeEntity = GameRules.GetGameModeEntity();
 
+        // доступные команды для игроков
+        GameRules.SetCustomGameTeamMaxPlayers(GlobalConstants.PLAYERS_TEAM, 5);
+        GameRules.SetCustomGameTeamMaxPlayers(GlobalConstants.ENEMY_TEAM, 0);
+
+        Tutorial.SelectPlayerTeam(GlobalConstants.PLAYERS_TEAM.toString());
+
+        // стадия выбора команды
+        GameRules.LockCustomGameSetupTeamAssignment(true);
+        GameRules.SetCustomGameSetupAutoLaunchDelay(GameMode.autoLaunchDelay);
+
+        // стадия выбора героя
+        GameRules.SetHeroSelectionTime(GameMode.heroSelectionTime);
+
+        // стадия стратегии и showcase
+        GameRules.SetStrategyTime(0);
         GameRules.SetShowcaseTime(0);
-        GameRules.SetHeroSelectionTime(heroSelectionTime);
-    }
 
-    public OnStateChange(): void {
-        const state = GameRules.State_Get();
+        // стадия "до нулевой"
+        GameRules.SetPreGameTime(GameMode.preGameDelay);
+        gameModeEntity.SetAnnouncerDisabled(true);
 
-        // Add 4 bots to lobby in tools
-        if (IsInToolsMode() && state == GameState.CUSTOM_GAME_SETUP) {
-            for (let i = 0; i < 4; i++) {
-                Tutorial.AddBot("npc_dota_hero_lina", "", "", false);
-            }
-        }
+        // магазин предметов
+        GameRules.SetUseUniversalShopMode(true);
 
-        if (state === GameState.CUSTOM_GAME_SETUP) {
-            // Automatically skip setup in tools
-            if (IsInToolsMode()) {
-                Timers.CreateTimer(3, () => {
-                    GameRules.FinishCustomGameSetup();
-                });
-            }
-        }
+        // общие игровые правила
+        gameModeEntity.SetTowerBackdoorProtectionEnabled(false);
 
-        // Start game once pregame hits
-        if (state === GameState.PRE_GAME) {
-            Timers.CreateTimer(0.2, () => this.StartGame());
-        }
-    }
-
-    private StartGame(): void {
-        print("Game starting!");
-
-        // Do some stuff here
+        // настройки смерти игрока
+        gameModeEntity.SetBuybackEnabled(false);
+        gameModeEntity.SetLoseGoldOnDeath(false);
+        GameRules.SetHeroRespawnEnabled(false);
     }
 
     // Called on script_reload
@@ -95,15 +82,23 @@ export class GameMode {
         // Do some stuff here
     }
 
-    private OnNpcSpawned(event: NpcSpawnedEvent) {
-        // After a hero unit spawns, apply modifier_panic for 8 seconds
-        const unit = EntIndexToHScript(event.entindex) as CDOTA_BaseNPC; // Cast to npc since this is the 'npc_spawned' event
-        // Give all real heroes (not illusions) the meepo_earthbind_ts_example spell
-        if (unit.IsRealHero()) {
-            if (!unit.HasAbility("meepo_earthbind_ts_example")) {
-                // Add lua ability to the unit
-                unit.AddAbility("meepo_earthbind_ts_example");
-            }
+    // настройки для игры в режиме разработчика
+    private configureToolMode(): void {
+
+        if (!IsInToolsMode()) {
+            return;
         }
+
+        print("Game running in the tool mode");
+
+        const gameModeEntity = GameRules.GetGameModeEntity();
+
+        GameRules.SetCustomGameSetupAutoLaunchDelay(0);
+        gameModeEntity.SetCustomGameForceHero("npc_dota_hero_axe");
+        GameRules.SetPreGameTime(0);
+        GameRules.SetStartingGold(50000);
+        
+        CreateUnitByName("npc_dota_hero_axe", Vector(0, 0, 0), true, undefined, undefined, GlobalConstants.ENEMY_TEAM);
+
     }
 }
