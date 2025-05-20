@@ -98,7 +98,7 @@ export class GameMode {
         GameRules.SetPreGameTime(0);
         GameRules.SetStartingGold(50000);
         
-        CreateUnitByName("npc_dota_hero_axe", Vector(0, 0, 0), true, undefined, undefined, GlobalConstants.ENEMY_TEAM);
+        // CreateUnitByName("npc_dota_hero_axe", Vector(0, 0, 0), true, undefined, undefined, GlobalConstants.ENEMY_TEAM);
 
     }
 }
