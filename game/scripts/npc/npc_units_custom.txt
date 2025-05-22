@@ -1,0 +1,17 @@
+#base "units/npc_units_centaurs_custom.txt"
+#base "units/npc_units_ghosts_custom.txt"
+#base "units/npc_units_gnolls_custom.txt"
+#base "units/npc_units_harpies_custom.txt"
+#base "units/npc_units_hellbears_custom.txt"
+#base "units/npc_units_kobolds_custom.txt"
+#base "units/npc_units_ogres_custom.txt"
+#base "units/npc_units_satirs_custom.txt"
+#base "units/npc_units_trolls_custom.txt"
+#base "units/npc_units_wildkins_custom.txt"
+#base "units/npc_units_wolves_custom.txt"
+
+
+"DOTAUnits"
+{
+	
+}
