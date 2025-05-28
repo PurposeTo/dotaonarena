@@ -4,6 +4,8 @@ import { GameStateListener } from "./listeners/GameStateListener";
 import { GlobalConstants } from "./GlobalConstants";
 import { PlayerDeathTombstone } from "./gamemechanics/PlayerDeathTombstone";
 import { SharePlayerExp } from "./gamemechanics/SharePlayerExp";
+import { SpawnPoint } from "./spawn/SpawnPoint";
+import { TroopsSpawner } from "./spawn/troops/TroopsSpawner";
 
 declare global {
     interface CDOTAGameRules {
@@ -37,6 +39,10 @@ export class GameMode {
 
         new PlayerDeathTombstone();
         new SharePlayerExp();
+
+        let entity = Entities.FindByName(undefined, "spawn_point") as CBaseEntity;
+        let point = new SpawnPoint(entity);
+        new TroopsSpawner(point);
     }
 
     private configure(): void {

@@ -16,6 +16,10 @@ export class AliveMobsContainer {
         this.onAllMobsKilled = action;
     }
 
+    public GetAliveCount() {
+        return this.aliveMobs.length;
+    }
+
     private OnEntityKilled(data: EntityKilledEvent): void {
         this.aliveMobs = this.aliveMobs.filter((e) => {
             return !e.IsNull() && e.IsAlive();
@@ -27,6 +31,6 @@ export class AliveMobsContainer {
     }
 
     private noAlive() {
-        return this.aliveMobs.length == 0;
+        return this.GetAliveCount() == 0;
     }
 }

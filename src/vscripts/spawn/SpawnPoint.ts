@@ -12,8 +12,6 @@ export class SpawnPoint {
     private readonly _point: CBaseEntity;
     private readonly _unitCreator: UnitCreator;
 
-    private _unitsQueue: string[] = [];
-
     private onMobSpawned: Action<CDOTA_BaseNPC_Creature> = (unit) => { }
 
     constructor(point: CBaseEntity) {
@@ -25,25 +23,14 @@ export class SpawnPoint {
         this.onMobSpawned = action;
     }
 
-    public Spawn(unit: string) {
-        this._unitsQueue.push(unit);
-
-        this.SpawnFromQueue();
+    public Spawn(unitName: string) {
+        const unit = this._unitCreator.CreateUnitByName(unitName, this._point, SpawnPoint.ENEMY_TEAM);
+        this.onMobSpawned(unit);
     }
 
     public SpawnAll(units: string[]) {
-        this._unitsQueue.push(...units);
-
-        this.SpawnFromQueue();
-    }
-
-    private SpawnFromQueue() {
-        this._unitsQueue.forEach((unitName) => {
-            assert(unitName);
-            const unit = this._unitCreator.CreateUnitByName(unitName, this._point, SpawnPoint.ENEMY_TEAM);
-            this.onMobSpawned(unit);
+        units.forEach((unitName) => {
+            this.Spawn(unitName)
         });
-
-        this._unitsQueue = [];
     }
 }
