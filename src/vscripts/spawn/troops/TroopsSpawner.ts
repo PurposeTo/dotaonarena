@@ -7,7 +7,7 @@ import { Troop } from "./Troop";
 export class TroopsSpawner {
 
     private static readonly MAX_ENEMIES = 60
-    private static readonly SPAWN_DELAY = 2
+    private static readonly SPAWN_DELAY = 10
 
     private readonly _spawnPoint: SpawnPoint
     private readonly _spawning: Process
@@ -24,7 +24,7 @@ export class TroopsSpawner {
         this._spawning = new Process(
             () => this.CanSpawn(troop),
             () => this.Spawn(troop), 
-            3
+            TroopsSpawner.SPAWN_DELAY
         )
 
         this._spawnPoint.listenOnMobSpawned(unit => this._aliveMobs.push(unit));
