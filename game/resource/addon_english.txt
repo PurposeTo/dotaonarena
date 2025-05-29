@@ -1,0 +1,9 @@
+"lang"
+{
+	"Language"		"English"
+	"Tokens"
+	{		
+		"addon_game_name"			"Dota on arena"
+		
+    }
+}

@@ -6,6 +6,10 @@ import { PlayerDeathTombstone } from "./gamemechanics/PlayerDeathTombstone";
 import { SharePlayerExp } from "./gamemechanics/SharePlayerExp";
 import { SpawnPoint } from "./spawn/SpawnPoint";
 import { TroopsSpawner } from "./spawn/troops/TroopsSpawner";
+import { Troop } from "./spawn/troops/Troop";
+import { TroopDto } from "./spawn/troops/dto/TroopDto";
+import { UnitsDto } from "./spawn/troops/dto/UnitsDto";
+import { TroopsMap } from "./spawn/troops/TroopsMap";
 
 declare global {
     interface CDOTAGameRules {
@@ -42,7 +46,12 @@ export class GameMode {
 
         let entity = Entities.FindByName(undefined, "spawn_point") as CBaseEntity;
         let point = new SpawnPoint(entity);
-        new TroopsSpawner(point);
+
+        // todo перенести в wave spawner
+        let troopsMap = TroopsMap.Instance();
+
+        let troop = troopsMap.Get("kobold_troop").format();
+        new TroopsSpawner(point, troop);
     }
 
     private configure(): void {

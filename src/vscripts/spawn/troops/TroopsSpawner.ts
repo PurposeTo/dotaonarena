@@ -16,11 +16,11 @@ export class TroopsSpawner {
 
     private _aliveEnemies = 0 // todo значение должно меняться
 
-    constructor(spawnPoint: SpawnPoint) {
+
+    constructor(spawnPoint: SpawnPoint, troop: Troop) {
         this._spawnPoint = spawnPoint
 
         // todo отряды должен определять wave 
-        let troop = new Troop(1, ["npc_dota_neutral_giant_wolf", "npc_dota_neutral_giant_wolf", "npc_dota_neutral_giant_wolf", "npc_dota_neutral_giant_wolf", "npc_dota_neutral_giant_wolf"])
         this._spawning = new Process(
             () => this.CanSpawn(troop),
             () => this.Spawn(troop), 
@@ -41,7 +41,6 @@ export class TroopsSpawner {
         this._aliveEnemies = troop.GetCount()
         this._spawnPoint.SpawnAll(troop.GetUnits())
     }
-
 
     public CanSpawn(troop: Troop): boolean {
         return this._aliveEnemies > 0 && this._aliveEnemies + troop.GetCount() > TroopsSpawner.MAX_ENEMIES
