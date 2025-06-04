@@ -51,7 +51,7 @@ export class GameMode {
         let troopsMap = new TroopsMap();
         troopsMap.SetAll(troops);
 
-        let troop = troopsMap.Get("kobold_troop").format();
+        let troop = troopsMap.Get("linecreeps_troop").format();
         new TroopsSpawner(point, troop);
 
         new TroopsReader().Read();
