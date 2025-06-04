@@ -1,0 +1,49 @@
+import { TroopDto } from "../dto/TroopDto";
+import { UnitsDto } from "../dto/UnitsDto";
+
+export class TroopsReader {
+    private static readonly PATH: string = "scripts/npc/spawn/troops/troops.txt";
+
+    private static readonly COST: string = "cost";
+    private static readonly UNITS: string = "units";
+
+
+    public Read(): TroopDto[] {
+        const rawFile = LoadKeyValues(TroopsReader.PATH) as any;
+        DeepPrintTable(rawFile)
+        const rawMap = this.FormatKVToMap(rawFile);
+        return this.MapTroops(rawMap);
+    }
+
+    private MapTroops(rawMap: Map<any, any>): TroopDto[] {
+        let mappedTroops = [];
+        for (const [troopName, troop] of rawMap) {
+            const troopMap = this.FormatKVToMap(troop);
+
+            let cost = troopMap.get(TroopsReader.COST) as number;
+            let units = troopMap.get(TroopsReader.UNITS) as any;
+            let unitsMap = this.FormatKVToMap(units);
+
+            let mappedUnits = this.MapUnits(unitsMap);
+
+            let mappedTroop = new TroopDto(troopName, cost, mappedUnits);
+            mappedTroops.push(mappedTroop);
+        }
+        return mappedTroops;
+    }
+
+    private MapUnits(rawUnits: Map<any, any>): UnitsDto[] {
+        let mappedUnits = [];
+        for (const [unitName, count] of rawUnits.entries()) {
+
+            mappedUnits.push(new UnitsDto(unitName, count));
+        }
+
+        return mappedUnits;
+    }
+
+    private FormatKVToMap(rawKv: any) {
+        let e = Object.entries(rawKv);
+        return new Map(e);
+    }
+}

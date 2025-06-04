@@ -2,184 +2,135 @@
 {
     "kobold_troop"
     {
-        "0"
+        "cost"    "1"
+        
+        "units"
         {
-            "name"      "npc_dota_neutral_kobold_taskmaster"
-            "count"     "1"
+            "npc_dota_neutral_kobold_taskmaster"    "1"
+            "npc_dota_neutral_kobold_tunneler"      "1"
+            "npc_dota_neutral_kobold"               "3"
         }
-        "1"
-        {
-            "name"      "npc_dota_neutral_kobold_tunneler"
-            "count"     "1"
-        }
-        "2"
-        {
-            "name"      "npc_dota_neutral_kobold"
-            "count"     "3"
-        }
+
     }
 
     "ghost_troop"
     {
-        "0"
+        "cost"    "1"
+        
+        "units"
         {
-            "name"      "npc_dota_neutral_fel_beast"
-            "count"     "2"
-        }
-        "1"
-        {
-            "name"      "npc_dota_neutral_ghost"
-            "count"     "1"
+            "npc_dota_neutral_fel_beast"    "2"
+            "npc_dota_neutral_ghost"        "1"
         }
     }
 
     "little_trolls"
     {
-        "0"
+        "cost"    "1"
+        
+        "units"
         {
-            "name"      "npc_dota_neutral_forest_troll_high_priest"
-            "count"     "1"
-        }
-
-        "1"
-        {
-            "name"      "npc_dota_neutral_forest_troll_berserker"
-            "count"     "2"
+            "npc_dota_neutral_forest_troll_high_priest"    "1"
+            "npc_dota_neutral_forest_troll_berserker"      "2"
         }
     }
 
     "gnoll_troop"
     {
-        "0"
+        "cost"    "1"
+        
+        "units"
         {
-            "name"      "npc_dota_neutral_gnoll_assassin"
-            "count"     "3"
+            "npc_dota_neutral_gnoll_assassin"    "3"
         }
     }
 
     "harpy_troop"
     {
-        "0"
+        "cost"    "1"
+        
+        "units"
         {
-            "name"      "npc_dota_neutral_harpy_storm"
-            "count"     "1"
-        }
-
-        "1"
-        {
-            "name"      "npc_dota_neutral_harpy_scout"
-            "count"     "2"
+            "npc_dota_neutral_harpy_storm"    "1"
+            "npc_dota_neutral_harpy_scout"    "2"
         }
     }
 
     "wolf_troop"
     {
-        "0"
+        "cost"    "1"
+        
+        "units"
         {
-            "name"      "npc_dota_neutral_alpha_wolf"
-            "count"     "1"
-        }
-
-        "1"
-        {
-            "name"      "npc_dota_neutral_giant_wolf"
-            "count"     "2"
+            "npc_dota_neutral_alpha_wolf"     "1"
+            "npc_dota_neutral_giant_wolf"     "2"
         }
     }
-
+    
     "ogre_troop"
     {
-        "0"
+        "cost"    "1"
+        
+        "units"
         {
-            "name"      "npc_dota_neutral_ogre_magi"
-            "count"     "1"
-        }
-
-        "1"
-        {
-            "name"      "npc_dota_neutral_ogre_mauler"
-            "count"     "2"
+            "npc_dota_neutral_ogre_magi"      "1"
+            "npc_dota_neutral_ogre_mauler"    "2"
         }
     }
-
+    
     "centaur_troop"
     {
-        "0"
+        "cost"    "1"
+        
+        "units"
         {
-            "name"      "npc_dota_neutral_centaur_khan"
-            "count"     "1"
-        }
-
-        "1"
-        {
-            "name"      "npc_dota_neutral_centaur_outrunner"
-            "count"     "2"
+            "npc_dota_neutral_centaur_khan"         "1"
+            "npc_dota_neutral_centaur_outrunner"    "2"
         }
     }
-
+    
     "satyr_troop"
     {
-        "0"
+        "cost"    "1"
+        
+        "units"
         {
-            "name"      "npc_dota_neutral_satyr_hellcaller"
-            "count"     "1"
-        }
-
-        "1"
-        {
-            "name"      "npc_dota_neutral_satyr_trickster"
-            "count"     "2"
-        }
-
-        "2"
-        {
-            "name"      "npc_dota_neutral_satyr_soulstealer"
-            "count"     "2"
+            "npc_dota_neutral_satyr_hellcaller"    "1"
+            "npc_dota_neutral_satyr_trickster"     "2"
+            "npc_dota_neutral_satyr_soulstealer"   "2"
         }
     }
-
+    
     "wildkin_troop"
     {
-        "0"
+        "cost"    "1"
+        
+        "units"
         {
-            "name"      "npc_dota_neutral_enraged_wildkin"
-            "count"     "1"
-        }
-
-        "1"
-        {
-            "name"      "npc_dota_neutral_wildkin"
-            "count"     "2"
+            "npc_dota_neutral_enraged_wildkin"    "1"
+            "npc_dota_neutral_wildkin"            "2"
         }
     }
-
+    
     "hellbear_troop"
     {
-        "0"
+        "cost"    "1"
+        
+        "units"
         {
-            "name"      "npc_dota_neutral_polar_furbolg_ursa_warrior"
-            "count"     "1"
-        }
-
-        "1"
-        {
-            "name"      "npc_dota_neutral_polar_furbolg_champion"
-            "count"     "2"
+            "npc_dota_neutral_polar_furbolg_ursa_warrior"    "1"
+            "npc_dota_neutral_polar_furbolg_champion"        "2"
         }
     }
     
     "troll_troop"
     {
-        "0"
+        "cost"    "1"
+        
+        "units"
         {
-            "name"      "npc_dota_neutral_dark_troll_warlord"
-            "count"     "1"
-        }
-
-        "1"
-        {
-            "name"      "npc_dota_neutral_dark_troll"
-            "count"     "2"
+            "npc_dota_neutral_dark_troll_warlord"    "1"
+            "npc_dota_neutral_dark_troll"            "2"
         }
     }
 }

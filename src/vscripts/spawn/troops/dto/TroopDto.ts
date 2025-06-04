@@ -18,6 +18,10 @@ export class TroopDto {
         return this.name;
     }
 
+    public GetCost() {
+        return this.powerCost;
+    }
+
     public format() : Troop {
         let unitsFlat: string[] = [];
 
@@ -30,6 +34,6 @@ export class TroopDto {
             }
         });
 
-        return new Troop(this.powerCost, unitsFlat);
+        return new Troop(unitsFlat);
     }
 }
