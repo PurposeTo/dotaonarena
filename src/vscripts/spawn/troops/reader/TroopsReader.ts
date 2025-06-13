@@ -1,3 +1,4 @@
+import { KvReader } from "../../../utils/KvReader";
 import { TroopDto } from "../dto/TroopDto";
 import { UnitsDto } from "../dto/UnitsDto";
 
@@ -9,20 +10,18 @@ export class TroopsReader {
 
 
     public Read(): TroopDto[] {
-        const rawFile = LoadKeyValues(TroopsReader.PATH) as any;
-        DeepPrintTable(rawFile)
-        const rawMap = this.FormatKVToMap(rawFile);
+        const rawMap = KvReader.ReadAsMap(TroopsReader.PATH);
         return this.MapTroops(rawMap);
     }
 
     private MapTroops(rawMap: Map<any, any>): TroopDto[] {
         let mappedTroops = [];
         for (const [troopName, troop] of rawMap) {
-            const troopMap = this.FormatKVToMap(troop);
+            const troopMap = KvReader.FormatKVToMap(troop);
 
             let cost = troopMap.get(TroopsReader.COST) as number;
             let units = troopMap.get(TroopsReader.UNITS) as any;
-            let unitsMap = this.FormatKVToMap(units);
+            let unitsMap = KvReader.FormatKVToMap(units);
 
             let mappedUnits = this.MapUnits(unitsMap);
 
@@ -40,10 +39,5 @@ export class TroopsReader {
         }
 
         return mappedUnits;
-    }
-
-    private FormatKVToMap(rawKv: any) {
-        let e = Object.entries(rawKv);
-        return new Map(e);
     }
 }

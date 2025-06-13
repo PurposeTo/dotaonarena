@@ -14,7 +14,7 @@ export class DotaRandom {
 
     public static randomArrayValue<T>(array: Array<T>): T {
         const index = Math.floor(Math.random() * array.length);
-        return array[index];
+        return assert(array[index]);
     }
 
     public static randomMapValue<T>(map: Map<any, T>) {

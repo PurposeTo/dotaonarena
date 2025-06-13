@@ -9,6 +9,10 @@ import { TroopsSpawner } from "./spawn/troops/TroopsSpawner";
 import { TroopsMap } from "./spawn/troops/TroopsMap";
 import { TroopsReader } from "./spawn/troops/reader/TroopsReader";
 import { TroopDto } from "./spawn/troops/dto/TroopDto";
+import { Invade } from "./spawn/waves/Invade";
+import { TroopsShop } from "./spawn/troopsbuyer/TroopsShop";
+import { Waves } from "./spawn/waves/Waves";
+import { WavesProperties } from "./spawn/waves/WavesProperties";
 
 declare global {
     interface CDOTAGameRules {
@@ -43,18 +47,21 @@ export class GameMode {
         new PlayerDeathTombstone();
         new SharePlayerExp();
 
+        let wavesProps = WavesProperties.Read();
+        DeepPrintTable(wavesProps);
+
         let entity = Entities.FindByName(undefined, "spawn_point") as CBaseEntity;
         let point = new SpawnPoint(entity);
 
-        // todo перенести в wave spawner
         let troops: TroopDto[] = new TroopsReader().Read();
         let troopsMap = new TroopsMap();
         troopsMap.SetAll(troops);
 
-        let troop = troopsMap.Get("kobold_troop").format();
-        new TroopsSpawner(point, troop);
+        let troopsShop = new TroopsShop(troops);
+        let spawner = new TroopsSpawner(point, wavesProps.MAX_ENEMIES, wavesProps.SPAWN_DELAY);
+        let invade = new Invade(troopsShop, spawner, wavesProps);
 
-        new TroopsReader().Read();
+        new Waves(invade, wavesProps.REST_TIME);
     }
 
     private configure(): void {
@@ -115,8 +122,5 @@ export class GameMode {
         gameModeEntity.SetCustomGameForceHero("npc_dota_hero_axe");
         GameRules.SetPreGameTime(0);
         GameRules.SetStartingGold(50000);
-
-        // CreateUnitByName("npc_dota_hero_axe", Vector(0, 0, 0), true, undefined, undefined, GlobalConstants.ENEMY_TEAM);
-
     }
 }
