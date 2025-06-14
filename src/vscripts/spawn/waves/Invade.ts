@@ -1,5 +1,5 @@
 import { TroopsSpawner } from "../troops/TroopsSpawner";
-import { TroopsShop } from "../troopsbuyer/TroopsShop";
+import { TroopsShop } from "../troopsshop/TroopsShop";
 import { WavesProperties } from "./WavesProperties";
 
 
@@ -40,11 +40,9 @@ export class Invade {
 
         print("Start wave №" + this.waveNumber + ". WaveLvl: " + waveLvl + ", minUnitCost: " + minUnitCost + ", waveCost: " + waveCost);
 
-        let troops = this.troopsShop.BuyMostExpensive(waveCost, minUnitCost)
+        let troops = this.troopsShop.BuySameTroops(waveCost, minUnitCost)
             .map(it => it.format());
 
-        // print("Wave troops:");
-        // DeepPrintTable(troops);
         // Удаляем прошлое событие и подписываемся заново
         this.spawner.listenOnUnitSpawned(unit => this.ConfigureMob(unit, waveLvl));
         this.spawner.SpawnAll(troops);

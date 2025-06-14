@@ -10,7 +10,7 @@ import { TroopsMap } from "./spawn/troops/TroopsMap";
 import { TroopsReader } from "./spawn/troops/reader/TroopsReader";
 import { TroopDto } from "./spawn/troops/dto/TroopDto";
 import { Invade } from "./spawn/waves/Invade";
-import { TroopsShop } from "./spawn/troopsbuyer/TroopsShop";
+import { TroopsShop } from "./spawn/troopsshop/TroopsShop";
 import { Waves } from "./spawn/waves/Waves";
 import { WavesProperties } from "./spawn/waves/WavesProperties";
 
@@ -42,7 +42,7 @@ export class GameMode {
         this.configureToolMode();
 
         new GameStateListener();
-        new EntityKilledListener();
+        // new EntityKilledListener(); Вынести логи в отдельную категорию
 
         new PlayerDeathTombstone();
         new SharePlayerExp();

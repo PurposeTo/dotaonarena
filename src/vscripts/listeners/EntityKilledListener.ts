@@ -12,7 +12,7 @@ export class EntityKilledListener {
         const name = unit.GetName();
         const teamNumber = unit.GetTeamNumber();
         const teamName = DotaTeamText[teamNumber];
-        print("Killed: " + name + " on team: " + teamName);
+        print("Killed: " + name + " on team " + teamName);
     }
 }
 

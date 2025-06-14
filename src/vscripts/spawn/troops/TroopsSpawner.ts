@@ -64,7 +64,12 @@ export class TroopsSpawner {
 
         let troop = this.GetLast(this.toSpawn);
         let aliveCount = this.aliveMobs.GetAliveCount();
-        return aliveCount > 0 && aliveCount + troop.GetCount() > this.maxEnemies
+        let tooMuchEnemies = aliveCount + troop.GetCount() > this.maxEnemies;
+        if (tooMuchEnemies) {
+            // todo вынести в отдельную категорию логов
+            print("There is too much enemies on map. Waiting for killing")
+        }
+        return aliveCount > 0 && tooMuchEnemies;
     }
 
     private GetLast(items: any[]) {
