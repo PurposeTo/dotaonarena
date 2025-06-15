@@ -8,8 +8,7 @@ export class Process {
     private readonly _doneCheck: Predicate
     private readonly _runnable: Runnable
 
-    constructor(doneCheck: Predicate, runnable: Runnable, delaySec: number) 
-    {
+    constructor(doneCheck: Predicate, runnable: Runnable, delaySec: number) {
         this._doneCheck = doneCheck
         this._runnable = runnable
         this._delaySec = delaySec
@@ -17,22 +16,22 @@ export class Process {
 
     // works like while cycle
     public Run() {
-        if(this._running) return
+        if (this._running) return
         this._running = true;
 
-         Timers.CreateTimer(() => {
-            if(this.Done()) {
-                return
+        Timers.CreateTimer(() => {
+            if (this.Done()) {
+                return this._delaySec;
             }
 
             this._runnable()
-            return this._delaySec
+            return this._delaySec;
         });
     }
 
     private Done(): boolean {
         let value = this._doneCheck()
-        if(value) {
+        if (value) {
             this._running = false;
         }
 

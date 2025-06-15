@@ -1,48 +1,89 @@
 import { Process } from "../../utils/Process";
-import { AliveMobsContainer } from "../AliveMobsContainer";
+import { AliveUnitsContainer } from "../AliveUnitsContainer";
 import { SpawnPoint } from "../SpawnPoint";
 import { Troop } from "./Troop";
 
 // спавнер отрядов крипов. Решает, в какой точке будут спавниться мобы, через какие промежутки.
 export class TroopsSpawner {
 
-    private static readonly MAX_ENEMIES = 60
-    private static readonly SPAWN_DELAY = 10
+    private readonly maxEnemies: number;
+    private readonly spawnDelay: number;
 
-    private readonly _spawnPoint: SpawnPoint
-    private readonly _spawning: Process
+    private readonly spawnPoint: SpawnPoint
+    private readonly spawning: Process
 
-    private readonly _aliveMobs: AliveMobsContainer = new AliveMobsContainer()
+    private readonly aliveMobs: AliveUnitsContainer = new AliveUnitsContainer()
 
-    private _aliveEnemies = 0 // todo значение должно меняться
+    private toSpawn: Troop[] = [];
 
+    private onUnitSpawned: Action<CDOTA_BaseNPC_Creature> = (unit) => { };
+    private onAllUnitsKilled: Runnable = () => { }; // событие, когда все юниты убиты и больше некого спавнить
 
-    constructor(spawnPoint: SpawnPoint, troop: Troop) {
-        this._spawnPoint = spawnPoint
+    constructor(spawnPoint: SpawnPoint, maxEnemies: number, spawnDelay: number) {
+        this.spawnPoint = spawnPoint
+        this.maxEnemies = maxEnemies;
+        this.spawnDelay = spawnDelay;
 
-        // todo отряды должен определять wave 
-        this._spawning = new Process(
-            () => this.CanSpawn(troop),
-            () => this.Spawn(troop), 
-            TroopsSpawner.SPAWN_DELAY
+        this.spawning = new Process(
+            () => this.CanSpawn(),
+            () => this.Spawn(),
+            this.spawnDelay
         )
 
-        this._spawnPoint.listenOnMobSpawned(unit => this._aliveMobs.push(unit));
-        this._aliveMobs.listenOnAllMobsKilled(() => this._aliveEnemies = 0)
+        this.spawnPoint.listenOnUnitSpawned(unit => this.OnUnitSpawned(unit));
+        this.aliveMobs.listenOnAllMobsKilled(() => this.CheckForTroopsKilled());
 
-        this._spawning.Run();
+        this.spawning.Run();
+    }
+
+    public listenOnAllMobsKilled(action: Runnable) {
+        this.onAllUnitsKilled = action;
+    }
+
+    public listenOnUnitSpawned(action: Action<CDOTA_BaseNPC_Creature>) {
+        this.onUnitSpawned = action;
     }
 
     public SpawnAll(troops: Troop[]) {
-        
+        this.toSpawn = this.toSpawn.concat(troops);
     }
 
-    public Spawn(troop: Troop) {
-        this._aliveEnemies = troop.GetCount()
-        this._spawnPoint.SpawnAll(troop.GetUnits())
+    public HaveNotUnitsToSpawn(): boolean {
+        return this.toSpawn.length == 0;
     }
 
-    public CanSpawn(troop: Troop): boolean {
-        return this._aliveEnemies > 0 && this._aliveEnemies + troop.GetCount() > TroopsSpawner.MAX_ENEMIES
+    private Spawn() {
+        if (this.toSpawn.length == 0) return;
+
+        let troop = assert(this.toSpawn.pop());
+        this.spawnPoint.SpawnAll(troop.GetUnits())
+    }
+
+    private CanSpawn(): boolean {
+        if (this.toSpawn.length == 0) return false;
+
+        let troop = this.GetLast(this.toSpawn);
+        let aliveCount = this.aliveMobs.GetAliveCount();
+        let tooMuchEnemies = aliveCount + troop.GetCount() > this.maxEnemies;
+        if (tooMuchEnemies) {
+            // todo вынести в отдельную категорию логов
+            print("There is too much enemies on map. Waiting for killing")
+        }
+        return aliveCount > 0 && tooMuchEnemies;
+    }
+
+    private GetLast(items: any[]) {
+        return assert(items[items.length - 1]);
+    }
+
+    private OnUnitSpawned(unit: CDOTA_BaseNPC_Creature) {
+        this.aliveMobs.push(unit);
+        this.onUnitSpawned(unit);
+    }
+
+    private CheckForTroopsKilled() {
+        if (this.HaveNotUnitsToSpawn()) {
+            this.onAllUnitsKilled();
+        }
     }
 }

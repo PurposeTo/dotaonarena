@@ -1,32 +1,33 @@
 
-export class AliveMobsContainer {
-    private aliveMobs: CDOTA_BaseNPC_Creature[] = [];
+export class AliveUnitsContainer {
+    private aliveUnits: CDOTA_BaseNPC_Creature[] = [];
 
-    private onAllMobsKilled: Runnable = () => { }
+    private onAllUnitsKilled: Runnable = () => { }
 
     constructor() {
         ListenToGameEvent("entity_killed", (data) => this.OnEntityKilled(data), undefined);
     }
 
     public push(unit: CDOTA_BaseNPC_Creature) {
-        this.aliveMobs.push(unit);
+        this.aliveUnits.push(unit);
     }
 
     public listenOnAllMobsKilled(action: Runnable) {
-        this.onAllMobsKilled = action;
+        this.onAllUnitsKilled = action;
     }
 
     public GetAliveCount() {
-        return this.aliveMobs.length;
+        return this.aliveUnits.length;
     }
 
     private OnEntityKilled(data: EntityKilledEvent): void {
-        this.aliveMobs = this.aliveMobs.filter((e) => {
+        this.aliveUnits = this.aliveUnits.filter((e) => {
             return !e.IsNull() && e.IsAlive();
         });
 
         if (this.noAlive()) {
-            this.onAllMobsKilled();
+            print("All units killed");
+            this.onAllUnitsKilled();
         }
     }
 
