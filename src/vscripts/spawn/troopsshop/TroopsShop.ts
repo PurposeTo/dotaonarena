@@ -12,49 +12,45 @@ export class TroopsShop {
     }
 
 
-    // собрать одинаковые отряды
-    public BuySameTroops(coins: number, minUnitCost: number): TroopDto[] {
+    // выбрать 1 случайный отряд и составить из него волну
+    public BuyRandom(coins: number, minUnitCost: number): TroopDto[] {
+        coins = this.ValidateCoins(coins, minUnitCost);
+
         let available: TroopDto[] = this.troopsList;
 
-        let waveTroop: TroopDto;
         available = this.FilterByMinUnitCost(available, minUnitCost);
         available = this.FilterByCost(available, coins);
 
-        if (available.length == 0) {
-            print("ERROR! Can't find valid troop for wave");
-            waveTroop = DotaRandom.randomArrayValue(this.troopsList);
-        }
-
-        waveTroop = DotaRandom.randomArrayValue(available);
-
-        return this.CollectTroops(waveTroop, coins);
+        let waveTroop = this.GetRandom(available);
+        return this.Collect(waveTroop, coins);
     }
 
-
-    // собрать наиболее дорогие отряды 
+    // выбрать 1 самый дорогой отряд и составить из него волну
     public BuyMostExpensive(coins: number, minUnitCost: number): TroopDto[] {
-        let out: TroopDto[] = [];
-        let remaining: number = coins;
-        let available: TroopDto[] = this.troopsList;
-
         coins = this.ValidateCoins(coins, minUnitCost);
 
-        while (true) {
-            available = this.FilterByMinUnitCost(available, minUnitCost);
-            available = this.FilterByCost(available, remaining);
+        let available: TroopDto[] = this.troopsList;
 
-            if (available.length == 0) break;
+        available = this.FilterByMinUnitCost(available, minUnitCost);
+        available = this.FilterByCost(available, coins);
+        available = this.FilterMostExpensive(available);
 
-            let troop = assert(this.FindMostExpensive(available));
-            remaining -= troop.GetCost();
-            out.push(troop);
-        }
-
-        return out;
+        let waveTroop = this.GetRandom(available);
+        return this.Collect(waveTroop, coins);
     }
 
-    // Собрать волну из одного и того же отряда
-    private CollectTroops(troop: TroopDto, coins: number): TroopDto[] {
+
+    private GetRandom(available: TroopDto[]): TroopDto {
+        if (available.length == 0) {
+            print("ERROR! Can't find valid troop for wave");
+            return DotaRandom.randomArrayValue(this.troopsList);
+        }
+
+        return DotaRandom.randomArrayValue(available);
+    }
+
+    // Купить одинаковые отряды на все монеты
+    private Collect(troop: TroopDto, coins: number): TroopDto[] {
         let out: TroopDto[] = [];
 
         let troopCost = troop.GetCost();
@@ -73,23 +69,13 @@ export class TroopsShop {
     }
 
     // Найти отряды с самой высокой стоимостью и вернуть один случайный
-    private FindMostExpensive(troops: TroopDto[]): TroopDto {
+    private FilterMostExpensive(troops: TroopDto[]): TroopDto[] {
         if (troops.length == 0) {
-            print("ERROR! TroopsShop.FindMostExpensive input is empty!");
+            print("ERROR! TroopsShop.GetMostExpensive input is empty!");
         }
 
-        // sort DESC
-        troops = troops.sort((a, b) => b.GetCost() - a.GetCost());
-        let highestCost = troops[0].GetCost();
-
-        let highestCostTroops: TroopDto[] = troops.filter(troop => troop.GetCost() == highestCost);
-
-        if (highestCostTroops.length == 0) {
-            print("ERROR! Can't find highestCostTroops!");
-            highestCostTroops = troops;
-        }
-
-        return DotaRandom.randomArrayValue(highestCostTroops);
+        let highestCost = this.GetHighestTroopCost(troops);
+        return troops.filter(troop => troop.GetCost() == highestCost);
     }
 
     // Получить самую высокую стоимость отряда

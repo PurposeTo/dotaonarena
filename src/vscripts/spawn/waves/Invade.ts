@@ -40,7 +40,8 @@ export class Invade {
 
         print("Start wave №" + this.waveNumber + ". WaveLvl: " + waveLvl + ", minUnitCost: " + minUnitCost + ", waveCost: " + waveCost);
 
-        let troops = this.troopsShop.BuySameTroops(waveCost, minUnitCost)
+        // todo: выбирать для волны случайную стратегию составления
+        let troops = this.troopsShop.BuyRandom(waveCost, minUnitCost)
             .map(it => it.format());
 
         // Удаляем прошлое событие и подписываемся заново
