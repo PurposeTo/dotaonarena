@@ -1,11 +1,11 @@
 import { TroopsSpawner } from "../troops/TroopsSpawner";
-import { TroopsShop } from "../troopsshop/TroopsShop";
+import { WaveBuilder } from "../wavebuilding/WaveBuilder";
 import { WavesProperties } from "./WavesProperties";
 
 
 export class Invade {
 
-    private readonly troopsShop: TroopsShop;
+    private readonly troopsShop: WaveBuilder;
     private readonly spawner: TroopsSpawner;
     private readonly wavesProps: WavesProperties;
 
@@ -14,7 +14,7 @@ export class Invade {
 
     private onWaveDefeated: Runnable = () => { };
 
-    constructor(troopsShop: TroopsShop, spawner: TroopsSpawner, wavesProps: WavesProperties) {
+    constructor(troopsShop: WaveBuilder, spawner: TroopsSpawner, wavesProps: WavesProperties) {
         this.troopsShop = troopsShop;
         this.spawner = spawner;
         this.wavesProps = wavesProps;
@@ -41,7 +41,7 @@ export class Invade {
         print("Start wave №" + this.waveNumber + ". WaveLvl: " + waveLvl + ", minUnitCost: " + minUnitCost + ", waveCost: " + waveCost);
 
         // todo: выбирать для волны случайную стратегию составления
-        let troops = this.troopsShop.BuyRandom(waveCost, minUnitCost)
+        let troops = this.troopsShop.Build(waveCost, minUnitCost)
             .map(it => it.format());
 
         // Удаляем прошлое событие и подписываемся заново

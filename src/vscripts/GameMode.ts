@@ -10,7 +10,7 @@ import { TroopsMap } from "./spawn/troops/TroopsMap";
 import { TroopsReader } from "./spawn/troops/reader/TroopsReader";
 import { TroopDto } from "./spawn/troops/dto/TroopDto";
 import { Invade } from "./spawn/waves/Invade";
-import { TroopsShop } from "./spawn/troopsshop/TroopsShop";
+import { WaveBuilder } from "./spawn/wavebuilding/WaveBuilder";
 import { Waves } from "./spawn/waves/Waves";
 import { WavesProperties } from "./spawn/waves/WavesProperties";
 
@@ -57,7 +57,7 @@ export class GameMode {
         let troopsMap = new TroopsMap();
         troopsMap.SetAll(troops);
 
-        let troopsShop = new TroopsShop(troops);
+        let troopsShop = new WaveBuilder(troops);
         let spawner = new TroopsSpawner(point, wavesProps.MAX_ENEMIES, wavesProps.SPAWN_DELAY);
         let invade = new Invade(troopsShop, spawner, wavesProps);
 
