@@ -26,7 +26,8 @@ export class AliveUnitsContainer {
         });
 
         if (this.noAlive()) {
-            print("All units killed");
+            // todo вынести в  DEBUG категорию логов
+            // print("All units killed");
             this.onAllUnitsKilled();
         }
     }

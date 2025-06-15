@@ -66,8 +66,8 @@ export class TroopsSpawner {
         let aliveCount = this.aliveMobs.GetAliveCount();
         let tooMuchEnemies = aliveCount + troop.GetCount() > this.maxEnemies;
         if (tooMuchEnemies) {
-            // todo вынести в отдельную категорию логов
-            print("There is too much enemies on map. Waiting for killing")
+            // todo вынести в DEBUG категорию логов
+            //print("There is too much enemies on map. Waiting for killing")
         }
         return aliveCount > 0 && tooMuchEnemies;
     }
