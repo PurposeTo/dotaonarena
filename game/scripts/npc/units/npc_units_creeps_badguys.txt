@@ -1,0 +1,144 @@
+
+"DOTAUnits"
+{
+
+    "npc_dota_creep_badguys_melee"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"12"
+			"DamageGain"				"1"
+			"BountyGain"				"1"
+		}
+	}
+
+    "npc_dota_creep_badguys_ranged"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"12"
+			"DamageGain"				"2"
+			"BountyGain"				"1"
+		}
+	}
+
+    "npc_dota_badguys_siege"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"20"
+			"DamageGain"				"4"
+			"BountyGain"				"2"
+		}
+	}
+
+    "npc_dota_creep_badguys_melee_upgraded"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"19"
+			"DamageGain"				"2"
+			"BountyGain"				"1"
+		}
+	}
+
+    "npc_dota_creep_badguys_ranged_upgraded"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"18"
+			"DamageGain"				"3"
+			"BountyGain"				"1"
+		}
+	}
+
+    "npc_dota_creep_badguys_melee_upgraded_mega"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"29"
+			"DamageGain"				"3"
+			"BountyGain"				"2"
+		}
+	}
+
+    "npc_dota_creep_badguys_ranged_upgraded_mega"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"28"
+			"DamageGain"				"4"
+			"BountyGain"				"2"
+		}
+	}
+}

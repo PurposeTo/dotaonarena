@@ -13,21 +13,21 @@
 
 		// Base stats
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"				"3800"		// Range of vision during day light.
-		"VisionNighttimeRange"				"2600"		// Range of vision at night time.
+		"VisionDaytimeRange"				"900"		// Range of vision during day light.
+		"VisionNighttimeRange"				"850"		// Range of vision at night time.
 
 		"Creature"
 		{
 			//Level Up Parameters
 			//------------------------------------------------------------
 
-			"HPGain"					"10"
-			"DamageGain"				"3"
-			"ArmorGain"					"0.3"
+			"HPGain"					"11"
+			"DamageGain"				"1"
+			"ArmorGain"					"0.1"
 			"MagicResistGain"			"0.1"
-			"MoveSpeedGain"				"0.5"
-			"BountyGain"				"4"
-			"XPGain"					"4"
+			"MoveSpeedGain"				"0.1"
+			"BountyGain"				"2"
+			"XPGain"					"0.1"
 		}
 	}
 
@@ -42,21 +42,21 @@
 
 		// Base stats
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"				"3800"		// Range of vision during day light.
-		"VisionNighttimeRange"				"2600"		// Range of vision at night time.
+		"VisionDaytimeRange"				"900"		// Range of vision during day light.
+		"VisionNighttimeRange"				"850"		// Range of vision at night time.
 
 		"Creature"
 		{
 			//Level Up Parameters
 			//------------------------------------------------------------
 
-			"HPGain"					"10"
-			"DamageGain"				"3"
-			"ArmorGain"					"0.3"
+			"HPGain"					"11"
+			"DamageGain"				"1.1"
+			"ArmorGain"					"0.1"
 			"MagicResistGain"			"0.1"
-			"MoveSpeedGain"				"0.5"
-			"BountyGain"				"4"
-			"XPGain"					"4"
+			"MoveSpeedGain"				"0.1"
+			"BountyGain"				"2.1"
+			"XPGain"					"0.1"
 		}
 	}
 }

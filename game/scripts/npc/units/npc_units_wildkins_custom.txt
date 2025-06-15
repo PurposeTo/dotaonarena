@@ -2,35 +2,7 @@
 
 "DOTAUnits"
 {
-    "npc_dota_neutral_enraged_wildkin"
-	{
-		"BaseClass"					  		"npc_dota_creature"
-		"UseNeutralCreepBehavior"			"0"
-
-		// Team
-		//----------------------------------------------------------------
-		"TeamName"							"DOTA_TEAM_BADGUYS"
-
-		// Base stats
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"				"3800"		// Range of vision during day light.
-		"VisionNighttimeRange"				"2600"		// Range of vision at night time.
-
-		"Creature"
-		{
-			//Level Up Parameters
-			//------------------------------------------------------------
-
-			"HPGain"					"10"
-			"DamageGain"				"3"
-			"ArmorGain"					"0.3"
-			"MagicResistGain"			"0.1"
-			"MoveSpeedGain"				"0.5"
-			"BountyGain"				"4"
-			"XPGain"					"4"
-		}
-	}
-
+   
     "npc_dota_neutral_wildkin"
 	{
 		"BaseClass"					  		"npc_dota_creature"
@@ -40,23 +12,34 @@
 		//----------------------------------------------------------------
 		"TeamName"							"DOTA_TEAM_BADGUYS"
 
-		// Base stats
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"12"
+			"DamageGain"				"1"
+			"BountyGain"				"1"
+		}
+	}
+
+    "npc_dota_neutral_enraged_wildkin"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"				"3800"		// Range of vision during day light.
-		"VisionNighttimeRange"				"2600"		// Range of vision at night time.
+		"TeamName"							"DOTA_TEAM_BADGUYS"
 
 		"Creature"
 		{
 			//Level Up Parameters
 			//------------------------------------------------------------
 
-			"HPGain"					"10"
-			"DamageGain"				"3"
-			"ArmorGain"					"0.3"
-			"MagicResistGain"			"0.1"
-			"MoveSpeedGain"				"0.5"
-			"BountyGain"				"4"
-			"XPGain"					"4"
+			"HPGain"					"12"
+			"DamageGain"				"1.1"
+			"BountyGain"				"1.1"
 		}
 	}
 }
