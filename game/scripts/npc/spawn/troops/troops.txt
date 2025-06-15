@@ -2,7 +2,7 @@
 {
     "kobold_troop"
     {
-        "cost"    "1"
+        "cost"    "4"
         
         "units"
         {
@@ -15,7 +15,7 @@
 
     "ghost_troop"
     {
-        "cost"    "1"
+        "cost"    "4"
         
         "units"
         {
@@ -26,7 +26,7 @@
 
     "little_trolls"
     {
-        "cost"    "1"
+        "cost"    "4"
         
         "units"
         {
@@ -37,7 +37,7 @@
 
     "gnoll_troop"
     {
-        "cost"    "1"
+        "cost"    "4"
         
         "units"
         {
@@ -47,7 +47,7 @@
 
     "harpy_troop"
     {
-        "cost"    "1"
+        "cost"    "4"
         
         "units"
         {
@@ -58,7 +58,7 @@
 
     "wolf_troop"
     {
-        "cost"    "1"
+        "cost"    "6"
         
         "units"
         {
@@ -69,7 +69,7 @@
     
     "ogre_troop"
     {
-        "cost"    "1"
+        "cost"    "5"
         
         "units"
         {
@@ -80,7 +80,7 @@
     
     "centaur_troop"
     {
-        "cost"    "1"
+        "cost"    "5"
         
         "units"
         {
@@ -91,7 +91,7 @@
     
     "satyr_troop"
     {
-        "cost"    "1"
+        "cost"    "7"
         
         "units"
         {
@@ -103,7 +103,7 @@
     
     "wildkin_troop"
     {
-        "cost"    "1"
+        "cost"    "5"
         
         "units"
         {
@@ -114,7 +114,7 @@
     
     "hellbear_troop"
     {
-        "cost"    "1"
+        "cost"    "5"
         
         "units"
         {
@@ -125,12 +125,91 @@
     
     "troll_troop"
     {
-        "cost"    "1"
+        "cost"    "6"
         
         "units"
         {
             "npc_dota_neutral_dark_troll_warlord"    "1"
             "npc_dota_neutral_dark_troll"            "2"
+        }
+    }
+
+    "line_creeps_troop"
+    {
+        "cost"    "4"
+        
+        "units"
+        {
+            "npc_dota_creep_badguys_melee"    "3"
+            "npc_dota_creep_badguys_ranged"   "1"
+        }
+    }
+
+    "line_creeps_siege_troop"
+    {
+        "cost"    "6"
+        
+        "units"
+        {
+            "npc_dota_creep_badguys_melee"    "5"
+            "npc_dota_creep_badguys_ranged"   "2"
+            "npc_dota_badguys_siege"          "1"
+        }
+    }
+
+    "super_creeps_troop"
+    {
+        "cost"    "8"
+        
+        "units"
+        {
+            "npc_dota_creep_badguys_melee_upgraded"    "3"
+            "npc_dota_creep_badguys_ranged_upgraded"   "1"
+        }
+    }
+
+    "super_creeps_siege_troop"
+    {
+        "cost"    "12"
+        
+        "units"
+        {
+            "npc_dota_creep_badguys_melee_upgraded"    "5"
+            "npc_dota_creep_badguys_ranged_upgraded"   "2"
+            "npc_dota_badguys_siege"                   "1"
+        }
+    }
+
+     "mega_creeps_troop"
+    {
+        "cost"    "14"
+        
+        "units"
+        {
+            "npc_dota_creep_badguys_melee_upgraded_mega"    "3"
+            "npc_dota_creep_badguys_ranged_upgraded_mega"   "1"
+        }
+    }
+
+    "mega_creeps_siege_troop"
+    {
+        "cost"    "18"
+        
+        "units"
+        {
+            "npc_dota_creep_badguys_melee_upgraded_mega"    "5"
+            "npc_dota_creep_badguys_ranged_upgraded_mega"   "2"
+            "npc_dota_badguys_siege"                        "1"
+        }
+    }
+
+    "roshan_troop"
+    {
+        "cost"    "20"
+        
+        "units"
+        {
+            "npc_dota_roshan"    "1"
         }
     }
 }

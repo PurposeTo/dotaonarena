@@ -1,0 +1,27 @@
+
+"DOTAUnits"
+{
+    "npc_dota_roshan"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//У рошана так же изменяются характеристики способностей со временем, проверить возможную реализацию
+
+			"HPGain"					"60"
+			"DamageGain"				"50"
+			"ArmorGain"					"0.2"
+			"MagicResistGain"			"0.1"
+			"MoveSpeedGain"				"0.1"
+			"BountyGain"				"10"
+			"XPGain"					"10"
+		}
+	}
+}
