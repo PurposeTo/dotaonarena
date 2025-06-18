@@ -52,8 +52,6 @@ export class Invade {
     private ConfigureMob(unit: CDOTA_BaseNPC_Creature, plusLvl: number): void {
         if (plusLvl == 0) return;
 
-        // fixme todo Если у существа уже максимальный уровень, то при вызова метода происходит ошибка и игра ломается.
-        // Нужно узнать, какой может быть максимальный уровень существа и апнуть его до максимального уровня
         unit.CreatureLevelUp(plusLvl);
     }
 
