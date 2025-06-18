@@ -10,6 +10,7 @@
 #base "units/npc_units_wildkins_custom.txt"
 #base "units/npc_units_wolves_custom.txt"
 #base "units/npc_units_creeps_badguys.txt"
+#base "units/npc_units_roshan_custom.txt"
 
 "DOTAUnits"
 {

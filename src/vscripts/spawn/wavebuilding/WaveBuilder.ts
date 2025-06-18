@@ -1,28 +1,42 @@
 import { DotaRandom } from "../../utils/DotaRandom";
 import { TroopDto } from "../troops/dto/TroopDto";
 import { IBuildStrategy } from "./IBuildStrategy";
-import { MostExpensiveStrategy } from "./MostExpensiveStrategy";
+import { StrongStrategy } from "./StrongStrategy";
 import { RandomStrategy } from "./RandomStrategy";
+import { WeakStrategy } from "./WeakStrategy";
 
 
 export class WaveBuilder {
 
     private readonly troopsList: TroopDto[]
 
+    private readonly weakStrategy = new WeakStrategy();
+
     private readonly buildStrategies: IBuildStrategy[] =
         [
+            this.weakStrategy,
             new RandomStrategy(),
-            new MostExpensiveStrategy()
-        ]
+            new StrongStrategy(),
+        ];
 
 
     constructor(troopsList: TroopDto[]) {
         this.troopsList = troopsList;
     }
 
-    Build(coins: number, minUnitCost: number): TroopDto[] {
-        let strategy = DotaRandom.randomArrayValue(this.buildStrategies);
-        return strategy.Build(this.troopsList, coins, minUnitCost);
+    Build(wave: number, coins: number, minUnitCost: number): TroopDto[] {
+        let troops = Array.from(this.troopsList);
+        let strategy: IBuildStrategy;
+
+        // todo вынести в конфиг файл
+        if (wave <= 5) {
+            strategy = this.weakStrategy;
+        }
+        else {
+            strategy = DotaRandom.randomArrayValue(this.buildStrategies);
+        }
+
+        return strategy.Build(troops, coins, minUnitCost);
     }
 
 }

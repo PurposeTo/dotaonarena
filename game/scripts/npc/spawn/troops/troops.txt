@@ -136,7 +136,7 @@
 
     "line_creeps_troop"
     {
-        "cost"    "4"
+        "cost"    "5"
         
         "units"
         {
@@ -180,7 +180,7 @@
         }
     }
 
-     "mega_creeps_troop"
+    "mega_creeps_troop"
     {
         "cost"    "14"
         

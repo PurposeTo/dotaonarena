@@ -41,7 +41,7 @@ export class Invade {
         print("Start wave №" + this.waveNumber + ". WaveLvl: " + waveLvl + ", minUnitCost: " + minUnitCost + ", waveCost: " + waveCost);
 
         // todo: выбирать для волны случайную стратегию составления
-        let troops = this.troopsShop.Build(waveCost, minUnitCost)
+        let troops = this.troopsShop.Build(this.waveNumber, waveCost, minUnitCost)
             .map(it => it.format());
 
         // Удаляем прошлое событие и подписываемся заново
@@ -51,6 +51,9 @@ export class Invade {
 
     private ConfigureMob(unit: CDOTA_BaseNPC_Creature, plusLvl: number): void {
         if (plusLvl == 0) return;
+
+        // fixme todo Если у существа уже максимальный уровень, то при вызова метода происходит ошибка и игра ломается.
+        // Нужно узнать, какой может быть максимальный уровень существа и апнуть его до максимального уровня
         unit.CreatureLevelUp(plusLvl);
     }
 
