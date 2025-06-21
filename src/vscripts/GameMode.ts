@@ -13,6 +13,7 @@ import { Invade } from "./spawn/waves/Invade";
 import { WaveBuilder } from "./spawn/wavebuilding/WaveBuilder";
 import { Waves } from "./spawn/waves/Waves";
 import { WavesProperties } from "./spawn/waves/WavesProperties";
+import { PlayerInitLvl } from "./gamemechanics/PlayerInitLvl";
 
 declare global {
     interface CDOTAGameRules {
@@ -42,13 +43,12 @@ export class GameMode {
         this.configureToolMode();
 
         new GameStateListener();
-        // new EntityKilledListener(); Вынести логи в отдельную категорию
+        new PlayerInitLvl();
 
         new PlayerDeathTombstone();
         new SharePlayerExp();
 
         let wavesProps = WavesProperties.Read();
-        DeepPrintTable(wavesProps);
 
         let entity = Entities.FindByName(undefined, "spawn_point") as CBaseEntity;
         let point = new SpawnPoint(entity);
