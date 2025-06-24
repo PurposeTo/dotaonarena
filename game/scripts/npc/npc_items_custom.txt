@@ -61,4 +61,48 @@
 	{
 		"ItemPurchasable"		"0"
 	}
+
+	"item_tango"
+	{
+		"ItemPurchasable"		"0"
+	}
+
+	"item_faerie_fire"
+	{
+		"ItemPurchasable"		"0"
+	}
+
+	"item_enchanted_mango"
+	{
+		"ItemPurchasable"		"0"
+	}
+
+	"item_clarity"
+	{
+		"ItemCost"					"30"
+		"ItemStockMax"				"6"
+		"ItemStockInitial"			"6"
+		"ItemStockTime"				"60"
+
+		"AbilityValues"
+		{
+			"mana_regen"		   	"15"
+			"break_on_hero_damage"	"0"
+		}
+	}
+
+	"item_flask"
+	{
+		"ItemCost"					"70"
+		"ItemStockMax"				"6"
+		"ItemStockInitial"			"6"
+		"ItemStockTime"				"60"
+
+		"AbilityValues"
+		{
+			"health_regen"			"50"
+			"buff_duration"			"30"
+			"break_on_hero_damage"	"0"
+		}
+	}
 }

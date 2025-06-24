@@ -11,5 +11,7 @@
     "COST_KOEF"                "2"
 
     "MIN_UNIT_COST_DEFAULT"    "0"
-    "MIN_UNIT_COST_KOEF"       "1"
+    "MIN_UNIT_COST_KOEF"       "0.6"
+
+    "PLAYER_COUNT_DIFFICULTY"       "1" // todo: должна вычисляться в зависимости от кол-ва игроков
 }

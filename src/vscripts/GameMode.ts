@@ -58,10 +58,10 @@ export class GameMode {
         troopsMap.SetAll(troops);
 
         let troopsShop = new WaveBuilder(troops);
-        let spawner = new TroopsSpawner(point, wavesProps.MAX_ENEMIES, wavesProps.SPAWN_DELAY);
+        let spawner = new TroopsSpawner(point, wavesProps.maxEnemies, wavesProps.spawnDelay);
         let invade = new Invade(troopsShop, spawner, wavesProps);
 
-        new Waves(invade, wavesProps.REST_TIME);
+        new Waves(invade, wavesProps.restTime);
     }
 
     private configure(): void {
