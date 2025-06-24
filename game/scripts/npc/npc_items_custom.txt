@@ -35,6 +35,30 @@
 		"ItemInitialCharges"			"0"
 		"ItemCastOnPickup"				"1"
 		"ItemKillable"					"0"
+	}
 
+	"item_hand_of_midas"
+	{
+		"ItemPurchasable"		"0"
+	}
+	
+	"item_recipe_hand_of_midas"
+	{
+		"ItemPurchasable"		"0"
+	}
+
+	"item_bottle"
+	{
+		"ItemPurchasable"		"0"
+	}
+
+	"item_rapier"
+	{
+		"ItemPurchasable"		"0"
+	}
+
+	"item_recipe_rapier"
+	{
+		"ItemPurchasable"		"0"
 	}
 }

@@ -1,15 +1,15 @@
 "WavesProperties"
 {
-    "REST_TIME"                "10"
+    "REST_TIME"                "5"
     "MAX_ENEMIES"              "60" // максимальное количество врагов на карте
-    "SPAWN_DELAY"              "3" // задержка между спавном отрядов
+    "SPAWN_DELAY"              "1" // задержка между спавном отрядов
 
-    "LVL_DEFAULT"              "1"
-    "LVL_KOEF"                 "0.7"
+    "LVL_DEFAULT"              "0"
+    "LVL_KOEF"                 "0.5"
 
-    "COST_DEFAULT"             "5"
+    "COST_DEFAULT"             "10"
     "COST_KOEF"                "2"
 
     "MIN_UNIT_COST_DEFAULT"    "0"
-    "MIN_UNIT_COST_KOEF"       "0.3"
+    "MIN_UNIT_COST_KOEF"       "1"
 }

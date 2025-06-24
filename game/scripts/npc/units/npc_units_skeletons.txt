@@ -1,0 +1,22 @@
+"DOTAUnits"
+{
+    "npc_dota_dark_troll_warlord_skeleton_warrior"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		"BountyXP"					"25"
+		"BountyGoldMin"				"10"
+		"BountyGoldMax"				"12"		
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"12"
+			"DamageGain"				"1"
+			"BountyGain"				"1"
+		}
+	}
+}

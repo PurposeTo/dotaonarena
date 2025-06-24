@@ -1,3 +1,4 @@
+#base "units/base/npc_units_base.txt"
 #base "units/npc_units_centaurs_custom.txt"
 #base "units/npc_units_ghosts_custom.txt"
 #base "units/npc_units_gnolls_custom.txt"
@@ -11,6 +12,7 @@
 #base "units/npc_units_wolves_custom.txt"
 #base "units/npc_units_creeps_badguys.txt"
 #base "units/npc_units_roshan_custom.txt"
+#base "units/npc_units_skeletons.txt"
 
 "DOTAUnits"
 {
