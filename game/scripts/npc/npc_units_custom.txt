@@ -13,6 +13,10 @@
 #base "units/npc_units_creeps_badguys.txt"
 #base "units/npc_units_roshan_custom.txt"
 #base "units/npc_units_skeletons.txt"
+#base "units/npc_units_dragons_custom.txt"
+#base "units/npc_units_golems_badguys.txt"
+#base "units/npc_units_lizards_custom.txt"
+#base "units/npc_units_frostbittens.txt"
 
 "DOTAUnits"
 {
