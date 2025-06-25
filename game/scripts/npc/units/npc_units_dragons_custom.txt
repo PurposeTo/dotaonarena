@@ -1,0 +1,44 @@
+
+"DOTAUnits"
+{
+
+    "nnpc_dota_neutral_black_drake"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"25"
+			"DamageGain"				"3"
+			"BountyGain"				"2"
+		}
+	}
+
+    "npc_dota_neutral_black_dragon"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"30"
+			"DamageGain"				"4"
+			"BountyGain"				"3"
+		}
+	}
+}

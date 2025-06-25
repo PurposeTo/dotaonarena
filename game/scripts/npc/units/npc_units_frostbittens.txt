@@ -1,0 +1,44 @@
+
+"DOTAUnits"
+{
+
+    "npc_dota_neutral_frostbitten_golem"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"28"
+			"DamageGain"				"3.3"
+			"BountyGain"				"1.8"
+		}
+	}
+
+    "npc_dota_neutral_ice_shaman"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"32"
+			"DamageGain"				"4.5"
+			"BountyGain"				"2.4"
+		}
+	}
+}
