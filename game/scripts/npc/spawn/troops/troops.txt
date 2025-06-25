@@ -11,7 +11,6 @@
             "npc_dota_neutral_kobold_tunneler"      "1"
             "npc_dota_neutral_kobold"               "3"
         }
-
     }
 
     "ghost_troop"
@@ -63,7 +62,7 @@
         
         "units"
         {
-            "npc_dota_dark_troll_warlord_skeleton_warrior"    "4"
+            "npc_dota_dark_troll_warlord_skeleton_warrior"    "3"
         }
     }
     
@@ -170,7 +169,7 @@
 
     "super_creeps_troop"
     {
-        "cost"    "8"
+        "cost"    "10"
         
         "units"
         {
@@ -181,7 +180,7 @@
 
     "super_creeps_siege_troop"
     {
-        "cost"    "12"
+        "cost"    "14"
         
         "units"
         {
@@ -193,7 +192,7 @@
 
     "mega_creeps_troop"
     {
-        "cost"    "14"
+        "cost"    "18"
         
         "units"
         {
@@ -204,7 +203,7 @@
 
     "mega_creeps_siege_troop"
     {
-        "cost"    "18"
+        "cost"    "20"
         
         "units"
         {
@@ -216,7 +215,7 @@
 
     "roshan_troop"
     {
-        "cost"    "20"
+        "cost"    "60"
         
         "units"
         {
