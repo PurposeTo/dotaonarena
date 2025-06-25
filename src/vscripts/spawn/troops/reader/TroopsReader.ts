@@ -10,18 +10,18 @@ export class TroopsReader {
 
 
     public Read(): TroopDto[] {
-        const rawMap = KvReader.ReadAsMap(TroopsReader.PATH);
+        const rawMap = KvReader.readAsMap(TroopsReader.PATH);
         return this.MapTroops(rawMap);
     }
 
     private MapTroops(rawMap: Map<any, any>): TroopDto[] {
         let mappedTroops = [];
         for (const [troopName, troop] of rawMap) {
-            const troopMap = KvReader.FormatKVToMap(troop);
+            const troopMap = KvReader.formatKVToMap(troop);
 
             let cost = troopMap.get(TroopsReader.COST) as number;
             let units = troopMap.get(TroopsReader.UNITS) as any;
-            let unitsMap = KvReader.FormatKVToMap(units);
+            let unitsMap = KvReader.formatKVToMap(units);
 
             let mappedUnits = this.MapUnits(unitsMap);
 

@@ -1,0 +1,7 @@
+"GameModeProperties"
+{
+    "AUTO_LAUNCH_DELAY"      "0"
+    "PRE_GAME_DELAY"         "0"
+
+    "START_GOLD"             "50000"
+}

@@ -1,0 +1,12 @@
+"GameModeProperties"
+{
+    "TEAM_MAX_PLAYERS"       "5"
+
+    "AUTO_LAUNCH_DELAY"      "5"
+    "HERO_SELECTION_TIME"    "30"
+    "STRATEGY_TIME"          "0"
+    "SHOWCASE_TIME"          "0"
+    "PRE_GAME_DELAY"         "30"
+
+    "START_GOLD"             "1000"
+}

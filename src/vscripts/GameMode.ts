@@ -1,5 +1,4 @@
 import { reloadable } from "./lib/tstl-utils";
-import { EntityKilledListener } from "./listeners/EntityKilledListener";
 import { GameStateListener } from "./listeners/GameStateListener";
 import { GlobalConstants } from "./GlobalConstants";
 import { PlayerDeathTombstone } from "./gamemechanics/PlayerDeathTombstone";
@@ -14,6 +13,7 @@ import { WaveBuilder } from "./spawn/wavebuilding/WaveBuilder";
 import { Waves } from "./spawn/waves/Waves";
 import { WavesProperties } from "./spawn/waves/WavesProperties";
 import { PlayerInitLvl } from "./gamemechanics/PlayerInitLvl";
+import { GameModeProperties } from "./gamemode/gameModeProperties";
 
 declare global {
     interface CDOTAGameRules {
@@ -24,9 +24,7 @@ declare global {
 @reloadable
 export class GameMode {
 
-    private static readonly autoLaunchDelay = 5;
-    private static readonly heroSelectionTime = 20;
-    private static readonly preGameDelay = 5;
+    private properties = GameModeProperties.Read();
 
     public static Precache(this: void, context: CScriptPrecacheContext) {
         PrecacheItemByNameSync("item_tombstone", context);
@@ -68,28 +66,29 @@ export class GameMode {
         const gameModeEntity = GameRules.GetGameModeEntity();
 
         // доступные команды для игроков
-        GameRules.SetCustomGameTeamMaxPlayers(GlobalConstants.PLAYERS_TEAM, 5);
+        GameRules.SetCustomGameTeamMaxPlayers(GlobalConstants.PLAYERS_TEAM, this.properties.teamMaxPlayers);
         GameRules.SetCustomGameTeamMaxPlayers(GlobalConstants.ENEMY_TEAM, 0);
 
         Tutorial.SelectPlayerTeam(GlobalConstants.PLAYERS_TEAM.toString());
 
         // стадия выбора команды
         GameRules.LockCustomGameSetupTeamAssignment(true);
-        GameRules.SetCustomGameSetupAutoLaunchDelay(GameMode.autoLaunchDelay);
+        GameRules.SetCustomGameSetupAutoLaunchDelay(this.properties.autoLaunchDelay);
 
         // стадия выбора героя
-        GameRules.SetHeroSelectionTime(GameMode.heroSelectionTime);
+        GameRules.SetHeroSelectionTime(this.properties.heroSelectionTime);
 
         // стадия стратегии и showcase
-        GameRules.SetStrategyTime(0);
-        GameRules.SetShowcaseTime(0);
+        GameRules.SetStrategyTime(this.properties.strategyTime);
+        GameRules.SetShowcaseTime(this.properties.showcaseTime);
 
         // стадия "до нулевой"
-        GameRules.SetPreGameTime(GameMode.preGameDelay);
+        GameRules.SetPreGameTime(this.properties.preGameTime);
         gameModeEntity.SetAnnouncerDisabled(true);
 
         // магазин предметов
         GameRules.SetUseUniversalShopMode(true);
+        GameRules.SetStartingGold(this.properties.startGold);
 
         // общие игровые правила
         gameModeEntity.SetTowerBackdoorProtectionEnabled(false);
@@ -117,10 +116,6 @@ export class GameMode {
         print("Game running in the tool mode");
 
         const gameModeEntity = GameRules.GetGameModeEntity();
-
-        GameRules.SetCustomGameSetupAutoLaunchDelay(0);
         gameModeEntity.SetCustomGameForceHero("npc_dota_hero_axe");
-        GameRules.SetPreGameTime(0);
-        GameRules.SetStartingGold(50000);
     }
 }

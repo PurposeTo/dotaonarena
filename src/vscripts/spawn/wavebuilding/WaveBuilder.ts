@@ -11,12 +11,14 @@ export class WaveBuilder {
     private readonly troopsList: TroopDto[]
 
     private readonly weakStrategy = new WeakStrategy();
+    private readonly strongStrategy = new StrongStrategy();
+    private readonly randomStrategy = new RandomStrategy();
 
     private readonly buildStrategies: IBuildStrategy[] =
         [
             this.weakStrategy,
-            new RandomStrategy(),
-            new StrongStrategy(),
+            this.strongStrategy,
+            this.randomStrategy,
         ];
 
 
@@ -29,11 +31,14 @@ export class WaveBuilder {
         let strategy: IBuildStrategy;
 
         // todo вынести в конфиг файл
-        if (wave <= 5) {
+        if (wave <= 10) {
             strategy = this.weakStrategy;
         }
+        else if (wave % 5 == 0) {
+            strategy = this.strongStrategy;
+        }
         else {
-            strategy = DotaRandom.randomArrayValue(this.buildStrategies);
+            strategy = this.randomStrategy;
         }
 
         return strategy.Build(troops, coins, minUnitCost);

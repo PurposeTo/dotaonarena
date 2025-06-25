@@ -11,4 +11,15 @@ export class PlayerUtils {
             action(i);
         }
     }
+
+    public static getPlayersCount(): number {
+        let count = 0;
+        for (let i = 0; i < DOTA_MAX_TEAM_PLAYERS; i++) {
+            if (!PlayerResource.IsValidPlayerID(i)) continue;
+
+            count++;
+        }
+
+        return count;
+    }
 }

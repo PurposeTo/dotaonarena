@@ -1,0 +1,5 @@
+"WavesProperties"
+{
+    "REST_TIME"                "5"
+    "SPAWN_DELAY"              "1"
+}
