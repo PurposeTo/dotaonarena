@@ -240,6 +240,7 @@
         
         "units"
         {
+            "npc_dota_neutral_mud_golem"       "2"
             "npc_dota_neutral_rock_golem"      "2"
             "npc_dota_neutral_granite_golem"   "1"
         }
@@ -264,6 +265,70 @@
         {
             "npc_dota_neutral_frostbitten_golem"    "2"
             "npc_dota_neutral_ice_shaman"           "1"
+        }
+    }
+
+    "forest_guys_troop"
+    {
+        "cost"    "4"
+        
+        "units"
+        {
+            "npc_dota_neutral_warpine_raider"    "5"
+        }
+    }
+
+    "water_easy_troop"
+    {
+        "cost"    "5"
+        
+        "units"
+        {
+            "npc_dota_neutral_froglet"    "2"
+            "npc_dota_neutral_froglet_mage"    "1"
+        }
+    }
+
+    "water_normal_troop"
+    {
+        "cost"    "10"
+        
+        "units"
+        {
+            "npc_dota_neutral_grown_frog"    "2"
+            "npc_dota_neutral_grown_frog_mage"    "1"
+        }
+    }
+
+    "water_ancient_troop"
+    {
+        "cost"    "15"
+        
+        "units"
+        {
+            "npc_dota_neutral_ancient_frog"    "2"
+            "npc_dota_neutral_ancient_frog_mage"    "1"
+        }
+    }
+
+    "gargoyles_troop"
+    {
+        "cost"    "25"
+        
+        "units"
+        {
+            "npc_dota_neutral_jungle_stalker"    "2"
+            "npc_dota_neutral_elder_jungle_stalker"    "1"
+        }
+    }
+
+    "shmups_troop"
+    {
+        "cost"    "4"
+        
+        "units"
+        {
+            "npc_dota_shmup_bird"    "4"
         }
     }
 }

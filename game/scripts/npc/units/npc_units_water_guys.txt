@@ -1,0 +1,123 @@
+"DOTAUnits"
+{
+
+    "npc_dota_neutral_froglet"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"10.5"
+			"DamageGain"				"1"
+			"BountyGain"				"1"
+		}
+	}
+
+    "npc_dota_neutral_froglet_mage"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"10"
+			"DamageGain"				"1.7"
+			"BountyGain"				"1"
+		}
+	}
+
+    "npc_dota_neutral_grown_frog"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"19.7"
+			"DamageGain"				"2.5"
+			"BountyGain"				"1.5"
+		}
+	}
+
+    "npc_dota_neutral_grown_frog_mage"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"18.7"
+			"DamageGain"				"2.8"
+			"BountyGain"				"2"
+		}
+	}
+
+    "npc_dota_neutral_ancient_frog"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"29"
+			"DamageGain"				"3"
+			"BountyGain"				"2.5"
+		}
+	}
+
+    "npc_dota_neutral_ancient_frog_mage"
+	{
+		"BaseClass"					  		"npc_dota_creature"
+		"UseNeutralCreepBehavior"			"0"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"							"DOTA_TEAM_BADGUYS"
+
+		"Creature"
+		{
+			//Level Up Parameters
+			//------------------------------------------------------------
+
+			"HPGain"					"27"
+			"DamageGain"				"3.7"
+			"BountyGain"				"3"
+		}
+	}
+}

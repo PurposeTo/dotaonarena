@@ -17,6 +17,10 @@
 #base "units/npc_units_golems_badguys.txt"
 #base "units/npc_units_lizards_custom.txt"
 #base "units/npc_units_frostbittens.txt"
+#base "units/npc_units_forest_guys.txt"
+#base "units/npc_units_water_guys.txt"
+#base "units/npc_units_gargoyles_custom.txt"
+#base "units/npc_units_shmups_custom.txt"
 
 "DOTAUnits"
 {
