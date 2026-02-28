@@ -13,7 +13,7 @@ import { WaveBuilder } from "./spawn/wavebuilding/WaveBuilder";
 import { Waves } from "./spawn/waves/Waves";
 import { WavesProperties } from "./spawn/waves/WavesProperties";
 import { PlayerInitLvl } from "./gamemechanics/PlayerInitLvl";
-import { GameModeProperties } from "./gamemode/gameModeProperties";
+import { GameModeProperties } from "./gamemode/GameModeProperties";
 
 declare global {
     interface CDOTAGameRules {
